@@ -5,7 +5,6 @@ var mysql2 = require("mysql2");
 var plotly = require("plotly");
 var sequelize = require("sequelize");
 
-
 // Sets up the Express App
 // =============================================================
 var app = express();
