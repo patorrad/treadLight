@@ -1,6 +1,13 @@
   module.exports = function(sequelize, DataTypes) {
     var Trip = sequelize.define("Trip", {
-      total_carbon: {
+      used_carbon: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          len: [1,500]
+        }
+      },
+      saved_carbon: {
         type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
