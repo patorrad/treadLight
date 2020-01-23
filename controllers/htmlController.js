@@ -28,7 +28,7 @@ var db = require("../models");
 
     // trip route loads the page
     router.get("/trip", function (req, res){
-
+        res.render("trip");
     });
 
     // profile route loads profile.html with data from our tables
