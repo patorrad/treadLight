@@ -32,38 +32,52 @@ var bcrypt = require('bcrypt');
             if(bcrypt.compareSync(req.body.password,dbUser.password)) {
                 //create new session property "user", set equal to logged in user
                 req.session.user = {first_name:dbUser.first_name,id:dbUser.id};
+                router.get("/trip");
             }
             else {
                 //delete existing user, add error
                 req.session.user= false;
-                req.session.error = 'auth failed bro'
+                req.session.error = 'Authentification Failed'
             }
             res.json(req.session);
         })
     });
 
     // loads register page
-    router.get("/")
+    router.get("/register", function (req, res) {
+        res.render("register");
+    });
 
     // sending entered sign up info to db
     router.post("/register", function (req, res){
         db.User.create(req.body).then(function(data){
             res.json(data);
+            router.get("/trip");
         });
     });
 
     // trip route loads the page
     router.get("/trip", function (req, res){
+        // if(req.session.user) {
+        //     res.render('trip',req.session.user);
+        // }else {
+        //     res.send('Need to Login')
+        // }
         res.render("trip");
     });
 
     // profile route loads profile.html with data from our tables
-    router.get("/profile/", function (req, res){
+    router.get("/profile", function (req, res){
         db.User.findOne({
             where: {
                 id: req.session.user.id
             }
         }).then(function(data){
+            // if(req.session.user) {
+            //     res.render('profile',req.session.user);
+            // }else {
+            //     res.send('Need to Login')
+            // }
             res.render("profile", data)
         });
     });

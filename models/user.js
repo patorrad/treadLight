@@ -11,7 +11,7 @@ var bcrypt = require('bcrypt');
           len: [1,500]
         }
       }, 
-      pwd: {
+      password: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
@@ -34,14 +34,14 @@ var bcrypt = require('bcrypt');
       },
       default_car: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         validate: {
           len: [1,500]
         }
       },
       default_city: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         validate: {
           len: [1,500]
         }
