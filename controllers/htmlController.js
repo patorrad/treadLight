@@ -22,16 +22,6 @@ var bcrypt = require('bcrypt');
         res.render("login");
     });
 
-<<<<<<< HEAD
-    router.get('/register',function(req,res){
-        res.render('register')
-    })
-
-    // sending entered data to db
-    router.post("/login", function (req, res){
-        // db.User to get email and password
-        // redirect to trip.handlebars
-=======
     // sending entered login data to db
     router.post('/login',function(req,res){
         db.User.findOne({
@@ -64,7 +54,6 @@ var bcrypt = require('bcrypt');
             res.json(data);
             router.get("/trip");
         });
->>>>>>> development
     });
 
     // trip route loads the page
