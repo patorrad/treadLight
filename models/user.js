@@ -31,6 +31,20 @@ var bcrypt = require('bcrypt');
         validate: {
           len: [1,500]
         }
+      },
+      default_car: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: [1,500]
+        }
+      },
+      default_city: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: [1,500]
+        }
       }
     });
   
