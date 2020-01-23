@@ -1,8 +1,12 @@
+  //npm package import, bcrypt does the encrypting for us
+var bcrypt = require('bcrypt');
+  
   module.exports = function(sequelize, DataTypes) {
     var User = sequelize.define("User", {
       email: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
         validate: {
           len: [1,500]
         }
@@ -40,6 +44,11 @@
             onDelete: "cascade"
           });
       };
+
+          //sequelize hook, will run before model instance is created and hash password
+    User.beforeCreate(function(user) {
+      user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
+    });
     
       return User;
     };

@@ -4,6 +4,8 @@ var express = require("express");
 var mysql2 = require("mysql2");
 var plotly = require("plotly");
 var sequelize = require("sequelize");
+var session = require("express-session");
+require('dotenv').config();
 
 // Sets up the Express App
 // =============================================================
@@ -24,6 +26,8 @@ var exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+
+app.use(session({ secret: process.env.SESSION_SECRET, resave: true, saveUninitialized: true,cookie:{maxAge: 7200000} }));
 // Routes
 // =============================================================
 // require("./develop/routes/api-routes.js")(app);
