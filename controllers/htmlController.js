@@ -20,6 +20,10 @@ var db = require("../models");
         res.render("login");
     });
 
+    router.get('/register',function(req,res){
+        res.render('register')
+    })
+
     // sending entered data to db
     router.post("/login", function (req, res){
         // db.User to get email and password
