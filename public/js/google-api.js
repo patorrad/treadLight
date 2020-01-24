@@ -7,13 +7,3 @@ let googleURL= "https://maps.googleapis.com/maps/api/distancematrix/json?units=i
 
 
 console.log(googleURL)
-
-// googleApiDist
-// googleApiTime
-
-$.ajax({
-    url: googleURL,
-    method:"GET"
-}).then(function(response){
-    console.log(JSON.stringify(response))
-})

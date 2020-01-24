@@ -2,6 +2,7 @@ let flightMph = 550;
 let trainMph = 60;
 let busMph = 10;
 
+
 flightTime(function(data){
     let time = googleApiDist/flightMph
 })
@@ -21,3 +22,4 @@ carTime(function(data){
     let time = googleApiTime
 })
 carTime();
+
