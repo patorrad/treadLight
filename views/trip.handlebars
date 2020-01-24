@@ -25,7 +25,7 @@
                         <label for="arrivecity">Arrival City</label>
                         <input type="text" id="arrivecity">
                     </div><br>
-                    <button class="btn-large waves-effect waves-dark green" style="width: 100%;">Submit</button>
+                    <button class="btn-large waves-effect waves-dark green" id="tripSubmit" style="width: 100%;">Submit</button>
                     <br>
                 </form>              
             </div>        
@@ -45,32 +45,32 @@
                         <p>
                             <label>
                                 <input type="checkbox" />
-                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-plane"></i>: ___{{co2var}} t CO2 | Distance:
-                                    {{tripDistance}} | Time: {{tripTime}}</span>
+                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-plane"></i>: ___{{co2var}} CO2 tons <i class="fas fa-road"></i>: ___
+                                    {{tripDistance}} miles <i class="far fa-clock"></i>: ___{{tripTime}}hours</span>
                             </label>
                         </p>
                         <br>
                         <p>
                             <label>
                                 <input type="checkbox" />
-                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-train"></i>: ___{{co2var}} t CO2 | Distance:
-                                    {{tripDistance}} | Time: {{tripTime}}</span>
+                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-train"></i>: ___{{co2var}} CO2 tons <i class="fas fa-road"></i>: ___
+                                    {{tripDistance}} miles <i class="far fa-clock"></i>: ___{{tripTime}}hours</span>
                             </label>
                         </p>
                         <br>
                         <p>
                             <label>
                                 <input type="checkbox" />
-                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-bus-alt"></i>: ___{{co2var}} t CO2 | Distance:
-                                    {{tripDistance}} | Time: {{tripTime}}</span>
+                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-bus-alt"></i>: ___{{co2var}} CO2 tons <i class="fas fa-road"></i>: ___
+                                    {{tripDistance}} miles <i class="far fa-clock"></i>: ___{{tripTime}}hours</span>
                             </label>
                         </p>
                         <br>
                         <p>
                             <label>
                                 <input type="checkbox" />
-                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-car"></i>: ___{{co2var}} t CO2 | Distance:
-                                    {{tripDistance}} | Time: {{tripTime}}</span>
+                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-car"></i>: ___{{co2var}} CO2 tons <i class="fas fa-road"></i>: ___
+                                    {{tripDistance}} miles <i class="far fa-clock"></i>: ___{{tripTime}}hours</span>
                             </label>
                         </p>
                         <br>
@@ -135,4 +135,25 @@
       var autocomplete = new google.maps.places.Autocomplete(input);
       var input = document.getElementById('arrivecity');
       var autocomplete = new google.maps.places.Autocomplete(input);
+
+      $(document).ready(function() {
+          $("#tripSubmit").on("click", function() {
+              event.preventDefault();
+            let googleApiKey = "AIzaSyB6YDdaRNCGktlvWISrGBjv75lcHfR-l44"
+            let cityOne = ($("#departcity").val().split(", ").join('+'))
+            let cityTwo = ($("#arrivecity").val().split(", ").join('+'))
+            let vehicleType = "driving"
+            console.log($("#departcity").val().split(", ").join('+'));
+            console.log($("#arrivecity").val().split(", ").join('+'));
+            let googleURL= "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + cityOne + "&destinations=" + cityTwo + "&mode=" + vehicleType + "&language=en-FR&key=" + googleApiKey;
+            console.log(googleURL)
+            $.ajax({
+                url: googleURL,
+                method: "GET"
+            }).then(function(response) {
+                console.log(response)
+            })
+            })
+          });
+      
 </script>

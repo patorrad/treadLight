@@ -27,7 +27,7 @@ var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-app.use(session({ secret: process.env.SESSION_SECRET, resave: true, saveUninitialized: true,cookie:{maxAge: 7200000} }));
+app.use(session({ secret: process.env.SESSION_SECRET, resave: true, saveUninitialized: true, cookie: { maxAge: 7200000 } }));
 // Routes
 // =============================================================
 // require("./develop/routes/api-routes.js")(app);
@@ -38,8 +38,10 @@ app.use(htmlRoutes);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-db.sequelize.sync({ force: false }).then(function() {
-  app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
-  });
-});
+db.sequelize.sync({ force: false })
+.then(function () {
+  app.listen(PORT, function () {
+      console.log("App listening on PORT " + PORT);
+    });
+  })
+  .catch(err => console.log(err));
