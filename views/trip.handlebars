@@ -1,61 +1,128 @@
 <div id="index-banner" class="parallax-container">
-        <div class="section no-pad-bot">
-            <div class="container">
-                <br><br>
-                <div class="row">
-                    <h4 class="header col s12 light" style="color: rgb(12, 56, 12);">Make educated travel decisions to
-                        reduce your carbon footprint! </h4>
-                </div>
-                <br><br>
+    <div class="section no-pad-bot">
+        <div class="container">
 
-            </div>
-        </div>
-        <div class="parallax"><img src="/img/tree.jpg" alt="Unsplashed background img 1"></div>
-    </div>
+            <br><br>
 
+        </div>
+    </div>
+            <div class="parallax"><img src="img/tree.jpg" alt="Unsplashed background img 1"></div>
+</div>
+ <div class="row">
+    <div class="col s12 m4">
+        <div class="card">
+            <div class=" center card-action green lighten-1 white-text">
+                <h4>Step 1</h4>
+                <h5>Choose your destination</h5>
+            </div>
 
-    <div class="row">
-        <div class="col s12 m4 offset-m4">
-            <div class="card">
-                <div class=" center card-action green lighten-1 white-text">
-                    <h5>Choose your destination</h5>
-                </div>
+            <div class="card-content">
+                <form id="find-trip-info">
+                    <div class="form-field">
+                        <label for="departcity">Departing City</label>
+                        <input type="text" id="departcity">
+                    </div><br>
+                     <div class="form-field">
+                        <label for="arrivecity">Arrival City</label>
+                        <input type="text" id="arrivecity">
+                    </div><br>
+                    <br>
+                </form>              
+            </div>        
+        </div>
+    </div>
+    <div class="col s12 m4">
+        <div class="card">
+            <div class="center card-action green lighten-1 white-text">
+                <h4>Step 2</h4>
+                <h5>Compare Your Carbon Footprint:</h5>
+            </div>
 
-                <div class="card-content">
-                    <div class="form-field">
-                        <label for="departcity">Departing City</label>
-                        <input type="text" id="departcity">
-                    </div><br>
-                    <div class="form-field">
-                        <label for="arrivecity">Arrival City</label>
-                        <input type="text" id="arrivecity">
-                    </div><br>
+            <div class="card-content">
+                <form id="find-trip-info">
 
-                
-                    <div class="input-field col s12">
-                        <select>
-                          <option value="" disabled selected>Choose your travel option</option>
-                          <option value="1">Plane</option>
-                          <option value="2">Train</option>
-                          <option value="3">Auto</option>
-                        </select>
-                        <label>Vehicle Type</label>
-                      </div>
+                    <form action="#">
+                        <p>
+                            <label>
+                                <input type="checkbox" />
+                                <span style="color: rgb(12, 56, 12);">Flight: ___{{co2var}} tons of CO2 | Distance:
+                                    {{tripDistance}} | Time: {{tripTime}}</span>
+                            </label>
+                        </p>
+                        <br>
+                        <p>
+                            <label>
+                                <input type="checkbox" />
+                                <span style="color: rgb(12, 56, 12);">Train: ___{{co2var}} tons of CO2 | Distance:
+                                    {{tripDistance}} | Time: {{tripTime}}</span>
+                            </label>
+                        </p>
+                        <br>
+                        <p>
+                            <label>
+                                <input type="checkbox" />
+                                <span style="color: rgb(12, 56, 12);">Bus: ___{{co2var}} tons of CO2 | Distance:
+                                    {{tripDistance}} | Time: {{tripTime}}</span>
+                            </label>
+                        </p>
+                        <br>
+                        <p>
+                            <label>
+                                <input type="checkbox" />
+                                <span style="color: rgb(12, 56, 12);">Car: ___{{co2var}} tons of CO2 | Distance:
+                                    {{tripDistance}} | Time: {{tripTime}}</span>
+                            </label>
+                        </p>
+                        <br>
 
-                    <div class="form-field">
-                        <button class="btn-large waves-effect waves-dark green" style="width: 100%;">Check my carbon footprint</button>
-                    </div><br>
-                </div>
-            </div>
-        </div>
-    </div>
+                        <div class="form-field">
+                            <button class="btn-large waves-effect waves-dark green" style="width: 100%;">Check my carbon
+                                footprint</button>
+                        </div>
+                    </form>              
+            </div>        
+        </div>
+
+    </div>
+    <div class="col s12 m4">
+        <div class="card">
+            <div class="center card-action green lighten-1 white-text">
+                <h4>Step 3</h4>
+                <h5>Save Our Planet</h5>
+            </div>
+
+            <div class="card-content">
+                <form id="find-trip-info">
+                    <div class="form-field">
+                        <p style="color: rgb(12, 56, 12)">Be part of our community of people who no longer contribute to
+                            climate change. </p>
+                        <br>
+                        <br>
+                        <div class="center">
+                            <i class="medium material-icons green-text">public</i>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+
+                    <div class="form-field center">
+                         <a  href="https://standfortrees.org" class=" center btn-large waves-effect waves-light green lighten-1">Donate</a>
+                        {{!-- <button class="btn-large waves-effect waves-dark green" style="width: 100%;"><a href="https://standfortrees.org">Donate</a>Donate</button> --}}
+                    </div>
+                </form>              
+            </div>        
+        </div>
+    </div>
+</div>
+
     
     <div class="parallax-container valign-wrapper">
-        <div class="section no-pad-bot">
-            <div class="container">
-                <div class="row center">
-                </div>
-            </div>
-        </div>
-        <div class="parallax"><img src="/img/sky-forest.jpg" alt="Unsplashed background img 2"></div>
-    </div>
+            <div class="section no-pad-bot">
+                    <div class="container">
+                            <div class="row center">
+
+                                </div>
+                        </div>
+                </div>
+            <div class="parallax"><img src="img/sky-forest.jpg" alt="Unsplashed background img 2"></div>
+        </div>
