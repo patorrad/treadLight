@@ -65,26 +65,28 @@ router.post("/register", function (req, res) {
 // trip route loads the page
 router.get("/trip/", function (req, res) {
     // console.log(googleURL)
-    let googleApiKey = process.env.GOOGLE_API_KEY
-    let cityOne = "Seattle+WA"
-    let cityTwo = "phoenix+az"
-    let vehicleType = "driving"
+    // let googleApiKey = process.env.GOOGLE_API_KEY
+    // let cityOne = "Seattle+WA"
+    // let cityTwo = "phoenix+az"
+    // let vehicleType = "driving"
 
-    let googleURL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + cityOne + "&destinations=" + cityTwo + "&mode=" + vehicleType + "&language=en-FR&key=" + googleApiKey;
-    axios.get(googleURL).then(response => {
-        // res.json(response.data);
-        const ourData = {
-            tripTime: response.data.rows[0].elements[0].duration.text,
-            tripDistance: response.data.rows[0].elements[0].distance.text,
-        }
-        console.log(ourData)
-        res.render("trip", ourData);
-    })
+    // let googleURL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + cityOne + "&destinations=" + cityTwo + "&mode=" + vehicleType + "&language=en-FR&key=" + googleApiKey;
+    // axios.get(googleURL).then(response => {
+    //     // res.json(response.data);
+    //     const ourData = {
+    //         tripTime: response.data.rows[0].elements[0].duration.text,
+    //         tripDistance: response.data.rows[0].elements[0].distance.text,
+    //     }
+    //     console.log(ourData)
+    //     res.render("trip", ourData);
+    // })
     // if(req.session.user) {
     //     res.render('trip',req.session.user);
     // }else {
     //     res.send('Need to Login')
     // }
+
+    res.render("trip");
 });
 
 router.get("/retrieveTripData/:start/:end", function (req, res) {
@@ -101,10 +103,29 @@ router.get("/retrieveTripData/:start/:end", function (req, res) {
             tripDistance: response.data.rows[0].elements[0].distance.text,
         }
         console.log(ourData)
-        res.json(response.data);
+        res.render("trip", ourData);
         // res.render("trip", ourData);
     })
 })
+
+// router.get("/retrieveTripData/:start/:end", function (req, res) {
+//     let googleApiKey = process.env.GOOGLE_API_KEY
+//     let cityOne = req.params.start
+//     let cityTwo = req.params.end
+//     let vehicleType = "driving"
+
+//     let googleURL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + cityOne + "&destinations=" + cityTwo + "&mode=" + vehicleType + "&language=en-FR&key=" + googleApiKey;
+//     axios.get(googleURL).then(response => {
+//         // res.json(response.data);
+//         const ourData = {
+//             tripTime: response.data.rows[0].elements[0].duration.text,
+//             tripDistance: response.data.rows[0].elements[0].distance.text,
+//         }
+//         console.log(ourData)
+//         res.json(response.data);
+//         // res.render("trip", ourData);
+//     })
+// })
 
 // profile route loads profile.html with data from our tables
 router.get("/profile", function (req, res) {
