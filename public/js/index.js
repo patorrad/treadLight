@@ -3,8 +3,6 @@ $("#find-trip-info").submit(event=>{
     console.log("form submit!");
     const depart = $('#departcity').val();
     const arrive = $('#arrivecity').val();
-    $.get(`/retrieveTripData/${depart}/${arrive}`).then(data=>{
-        console.log(data);
-      
-    });
+    //window.location.replace(`/retrieveTripData/${depart}/${arrive}`);
+    window.location.href = `/retrieveTripData/${depart}/${arrive}`;
 })
