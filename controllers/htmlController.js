@@ -88,7 +88,7 @@ router.get("/trip/", function (req, res) {
     //     res.send('Need to Login')
     // }
 
-    res.render("trip");
+    res.render("trip",{istrip:true });
 });
 
 router.get("/retrieveTripData/:start/:end", function (req, res) {
@@ -147,3 +147,4 @@ router.get("/profile", function (req, res) {
 // });
 
 module.exports = router;
+
