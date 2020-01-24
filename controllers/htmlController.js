@@ -8,9 +8,6 @@ var bcrypt = require('bcrypt');
 const axios = require("axios");
 
 
-
-
-
 // Routes
 // =============================================================
 
@@ -29,16 +26,22 @@ router.get("/login", function (req, res) {
 
 // sending entered login data to db
 router.post('/login', function (req, res) {
+    console.log(req.body);
     db.User.findOne({
         where: {
             email: req.body.email
         }
     }).then(function (dbUser) {
+        console.log(dbUser)
         //compares password send in req.body to one in database, will return true if matched.
-        if (bcrypt.compareSync(req.body.password, dbUser.password)) {
+        if(!dbUser){
+            req.session.user=false;
+            req.session.error = 'no user found!'
+        }
+        else if (bcrypt.compareSync(req.body.password, dbUser.password)) {
             //create new session property "user", set equal to logged in user
             req.session.user = { first_name: dbUser.first_name, id: dbUser.id };
-            router.get("/trip");
+            // router.get("/trip");
         }
         else {
             //delete existing user, add error
@@ -58,8 +61,7 @@ router.get("/register", function (req, res) {
 router.post("/register", function (req, res) {
     db.User.create(req.body).then(function (data) {
         res.json(data);
-        router.get("/trip");
-    });
+    }).catch(err=>console.log("register err", err))
 });
 
 // trip route loads the page
@@ -129,18 +131,19 @@ router.get("/retrieveTripData/:start/:end", function (req, res) {
 
 // profile route loads profile.html with data from our tables
 router.get("/profile", function (req, res) {
-    db.User.findOne({
-        where: {
-            id: req.session.user.id
-        }
-    }).then(function (data) {
+    // db.User.findOne({
+    //     where: {
+    //         id: req.session.user.id
+    //     }
+    // }).then(function (data) {
         // if(req.session.user) {
         //     res.render('profile',req.session.user);
         // }else {
         //     res.send('Need to Login')
         // }
-        res.render("profile", data)
+        // res.render("profile", data)
+        res.render("profile")
     });
-});
+// });
 
 module.exports = router;
