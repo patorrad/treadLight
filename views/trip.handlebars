@@ -129,7 +129,9 @@
         </div>
 
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6YDdaRNCGktlvWISrGBjv75lcHfR-l44&libraries=places"></script>
-
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6YDdaRNCGktlvWISrGBjv75lcHfR-l44&callback=initMap">
+    </script>
   <script>
       var input = document.getElementById('departcity');
       var autocomplete = new google.maps.places.Autocomplete(input);
@@ -155,5 +157,7 @@
             })
             })
           });
+
+          
       
 </script>
