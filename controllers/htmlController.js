@@ -131,13 +131,30 @@ router.get("/retrieveTripData/:start/:end", function (req, res) {
 
 // profile route loads profile.html with data from our tables
 router.get("/profile", function (req, res) {
-    db.User.findOne({
+    db.User.findOne({raw:true,
         where: {
             id: req.session.user.id
         }
     }).then(function (data) {
         if(req.session.user) {
-            res.render('profile',req.session.user);
+            console.log(data);
+            
+            db.Trip.findAll({raw:true,
+                where: {
+                    UserId: data.id
+                }
+            }).then(function(result){
+                console.log(result[0], result[1]);
+                let total_used_carbon = 0;
+                let total_saved_carbon = 0;
+                for (trip in result) {
+                    total_used_carbon += trip.used_carbon;
+                    total_saved_carbon += trip.saved.carbon;
+                }
+                console.log(total_used_carbon);
+                console.log(total_saved_carbon);
+            })
+            res.render('profile', req.session.user);
         }else {
             res.send('Need to Login')
         }
