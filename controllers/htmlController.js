@@ -134,20 +134,22 @@ router.get("/retrieveTripData/:start/:end", function (req, res) {
 
 // profile route loads profile.html with data from our tables
 router.get("/profile", function (req, res) {
-    // db.User.findOne({
-    //     where: {
-    //         id: req.session.user.id
-    //     }
-    // }).then(function (data) {
-        // if(req.session.user) {
-        //     res.render('profile',req.session.user);
-        // }else {
-        //     res.send('Need to Login')
-        // }
-        // res.render("profile", data)
-        res.render("profile")
+    db.User.findOne({
+        where: {
+            id: req.session.user.id
+        }
+    }).then(function (data) {
+        if(req.session.user) {
+            res.render('profile',req.session.user);
+        }else {
+            res.send('Need to Login')
+        }
     });
-// });
+});
+
+// router.post("/profile", function (req, res){
+//     db.User.findOne
+// })
 
 module.exports = router;
 

@@ -13,6 +13,10 @@
         validate: {
           len: [1,500]
         }
+      },
+      travel_mode: {
+        type: DataTypes.STRING,
+        allowNull: false
       }
     });
   

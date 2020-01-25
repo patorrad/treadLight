@@ -25,7 +25,8 @@
                         <label for="arrivecity">Arrival City</label>
                         <input type="text" id="arrivecity">
                     </div><br>
-                    <button class="btn-large waves-effect waves-dark green" id="tripSubmit" style="width: 100%;">Submit</button>
+                    <button class="btn-large waves-effect waves-dark green" id="tripSubmit"
+                        style="width: 100%;">Submit</button>
                     <br>
                 </form>              
             </div>        
@@ -44,32 +45,36 @@
                     <form action="#">
                         <p>
                             <label>
-                                <input type="checkbox" />
-                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-plane"></i>: ___{{co2var}} CO2 tons <i class="fas fa-road"></i>: ___
+                                <input id="plane" type="radio" name="checkbox" />
+                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-plane"></i>: ___{{co2var}} CO2
+                                    tons <i class="fas fa-road"></i>: ___
                                     {{tripDistance}} miles <i class="far fa-clock"></i>: ___{{tripTime}}hours</span>
                             </label>
                         </p>
                         <br>
                         <p>
                             <label>
-                                <input type="checkbox" />
-                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-train"></i>: ___{{co2var}} CO2 tons <i class="fas fa-road"></i>: ___
+                                <input id="train" type="radio" name="checkbox" />
+                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-train"></i>: ___{{co2var}} CO2
+                                    tons <i class="fas fa-road"></i>: ___
                                     {{tripDistance}} miles <i class="far fa-clock"></i>: ___{{tripTime}}hours</span>
                             </label>
                         </p>
                         <br>
                         <p>
                             <label>
-                                <input type="checkbox" />
-                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-bus-alt"></i>: ___{{co2var}} CO2 tons <i class="fas fa-road"></i>: ___
+                                <input id="bus" type="radio" name="checkbox" />
+                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-bus-alt"></i>: ___{{co2var}} CO2
+                                    tons <i class="fas fa-road"></i>: ___
                                     {{tripDistance}} miles <i class="far fa-clock"></i>: ___{{tripTime}}hours</span>
                             </label>
                         </p>
                         <br>
                         <p>
                             <label>
-                                <input type="checkbox" />
-                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-car"></i>: ___{{co2var}} CO2 tons <i class="fas fa-road"></i>: ___
+                                <input id="car" type="radio" name="checkbox" />
+                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-car"></i>: ___{{co2var}} CO2 tons
+                                    <i class="fas fa-road"></i>: ___
                                     {{tripDistance}} miles <i class="far fa-clock"></i>: ___{{tripTime}}hours</span>
                             </label>
                         </p>
@@ -114,7 +119,8 @@
             </div>        
         </div>
     </div>
-        </div>
+        
+</div>
 
     
     <div class="parallax-container valign-wrapper">
@@ -127,7 +133,6 @@
                 </div>
             <div class="parallax"><img src="img/sky-forest.jpg" alt="Unsplashed background img 2"></div>
         </div>
-
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6YDdaRNCGktlvWISrGBjv75lcHfR-l44&libraries=places"></script>
   <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6YDdaRNCGktlvWISrGBjv75lcHfR-l44&callback=initMap">
@@ -176,21 +181,30 @@ let carbonConv = {
       var input = document.getElementById('arrivecity');
       var autocomplete = new google.maps.places.Autocomplete(input);
 
-      $(document).ready(function() {
-          $("#tripSubmit").on("click", function() {
-              event.preventDefault();
+<script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6YDdaRNCGktlvWISrGBjv75lcHfR-l44&libraries=places"></script>
+
+<script>
+    var input = document.getElementById('departcity');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    var input = document.getElementById('arrivecity');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+
+
+    $(document).ready(function () {
+        $("#tripSubmit").on("click", function () {
+            event.preventDefault();
             let googleApiKey = "AIzaSyB6YDdaRNCGktlvWISrGBjv75lcHfR-l44"
             let cityOne = ($("#departcity").val().split(", ").join('+'))
             let cityTwo = ($("#arrivecity").val().split(", ").join('+'))
             let vehicleType = "driving"
             console.log($("#departcity").val().split(", ").join('+'));
             console.log($("#arrivecity").val().split(", ").join('+'));
-            let googleURL= "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + cityOne + "&destinations=" + cityTwo + "&mode=" + vehicleType + "&language=en-FR&key=" + googleApiKey;
+            let googleURL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + cityOne + "&destinations=" + cityTwo + "&mode=" + vehicleType + "&language=en-FR&key=" + googleApiKey;
             console.log(googleURL)
             $.ajax({
                 url: `/retrievetripdata/${cityOne}/${cityTwo}`,
                 method: "GET"
-            }).then(function(response) {
                 //console.log(response) 
                 const carTime = timeConv.carTime(response);
                 const busTime = timeConv.busTime(response);
@@ -208,4 +222,13 @@ let carbonConv = {
           });
 
       
+
+            }).then(function (response) {
+                console.log(response)
+            })
+        })
+    });
+
+
+
 </script>
