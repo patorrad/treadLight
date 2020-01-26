@@ -1,3 +1,5 @@
+// import { response } from "express";
+
 $("#find-trip-info").submit(event=>{
     event.preventDefault();
     console.log("form submit!");
@@ -7,6 +9,20 @@ $("#find-trip-info").submit(event=>{
     window.location.href = `/retrieveTripData/${depart}/${arrive}`;
 });
 
+$("#carbon-info").submit(event=>{
+    event.preventDefault();
+    console.log("form submit!");
+    let vehicle = document.querySelector('input[name="checkbox"]:checked');
+    let myData = vehicle.value.split(",");
+    // $('input[name="checkbox"]').change(function(e) {
+    //     vehicle = $(this).id();
+    // })
+    // console.log(vehicle.value);
+    // const vehicle = $('#checkbox').id();
+    // const arrive = $('#arrivecity').val();
+    //window.location.replace(`/retrieveTripData/${depart}/${arrive}`);
+    window.location.href = `/outputTripData/${myData[0]}/${myData[1]}/${myData[2]}`;
+});
 
 $("#loginForm").submit(event=>{
     event.preventDefault();
