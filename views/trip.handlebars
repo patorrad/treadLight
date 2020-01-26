@@ -133,6 +133,53 @@
                 </div>
             <div class="parallax"><img src="img/sky-forest.jpg" alt="Unsplashed background img 2"></div>
         </div>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6YDdaRNCGktlvWISrGBjv75lcHfR-l44&libraries=places"></script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6YDdaRNCGktlvWISrGBjv75lcHfR-l44&callback=initMap">
+    </script>
+  <script>
+      let timeConv = {
+    flightMph: 550,
+    trainMph: 60,
+    busMph: 10,
+    carMph: 40,
+    flightTime: function(data){
+        return data/this.flightMph;
+    },
+    trainTime: function(data){
+        return data / this.trainMph;
+    },
+    busTime: function(data){
+        return data / this.busMph;
+    }, 
+    carTime: function(data){
+        return data / this.carMph;
+    }
+};
+
+let carbonConv = {
+    flightCo2: 188,
+    trainCo2: 147,
+    busCo2: 43,
+    carCo2: 368,
+    flightCarbon: function(data){
+        return data * flightCo2;
+    },
+    trainCarbon: function(data){
+        return data * trainCo2;
+    },    
+    busCarbon: function(data){
+        return data * busCo2;
+    },    
+    carCarbon: function(data){
+        return data * carCo2
+    }
+};
+
+      var input = document.getElementById('departcity');
+      var autocomplete = new google.maps.places.Autocomplete(input);
+      var input = document.getElementById('arrivecity');
+      var autocomplete = new google.maps.places.Autocomplete(input);
 
 <script type="text/javascript"
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6YDdaRNCGktlvWISrGBjv75lcHfR-l44&libraries=places"></script>
@@ -146,6 +193,47 @@
     var autocomplete = new google.maps.places.Autocomplete(input,options);
     var input = document.getElementById('arrivecity');
     var autocomplete = new google.maps.places.Autocomplete(input,options);
+
+
+
+    $(document).ready(function () {
+        $("#tripSubmit").on("click", function () {
+            event.preventDefault();
+            let googleApiKey = "AIzaSyB6YDdaRNCGktlvWISrGBjv75lcHfR-l44"
+            let cityOne = ($("#departcity").val().split(", ").join('+'))
+            let cityTwo = ($("#arrivecity").val().split(", ").join('+'))
+            let vehicleType = "driving"
+            console.log($("#departcity").val().split(", ").join('+'));
+            console.log($("#arrivecity").val().split(", ").join('+'));
+            let googleURL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + cityOne + "&destinations=" + cityTwo + "&mode=" + vehicleType + "&language=en-FR&key=" + googleApiKey;
+            console.log(googleURL)
+            $.ajax({
+                url: `/retrievetripdata/${cityOne}/${cityTwo}`,
+                method: "GET"
+                //console.log(response) 
+                const carTime = timeConv.carTime(response);
+                const busTime = timeConv.busTime(response);
+                const flightTime = timeConv.flightTime(response);
+                const trainTime = timeConv.trainTime(response);
+                console.log(`car:${carTime}`);
+                console.log(`bus:${busTime}`);
+                console.log(`train:${trainTime}`);
+                console.log(`flight:${flightTime}`);
+                
+                //const actualMiles = response.tripDistance;
+                //console.log(actualMiles);
+            })
+            })
+          });
+
+      
+
+            }).then(function (response) {
+                console.log(response)
+            })
+        })
+    });
+
 
 
 
