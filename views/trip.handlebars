@@ -19,11 +19,11 @@
                 <form id="find-trip-info">
                     <div class="form-field">
                         <label for="departcity">Departing City</label>
-                        <input type="text" id="departcity">
+                        <input type="text" id="departcity">{{cityOne}}
                     </div><br>
                      <div class="form-field">
                         <label for="arrivecity">Arrival City</label>
-                        <input type="text" id="arrivecity">
+                        <input type="text" id="arrivecity">{{cityTwo}}
                     </div><br>
                     <button class="btn-large waves-effect waves-dark green" id="tripSubmit"
                         style="width: 100%;">Submit</button>
@@ -46,36 +46,36 @@
                         <p>
                             <label>
                                 <input id="plane" type="radio" name="checkbox" />
-                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-plane"></i>: ___{{co2var}} CO2
-                                    tons <i class="fas fa-road"></i>: ___
-                                    {{tripDistance}} miles <i class="far fa-clock"></i>: ___{{tripTime}}hours</span>
+                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-plane"></i>: {{co2var_plane}} CO2
+                                    tons <i class="fas fa-road"></i>: 
+                                    {{tripDistance}} miles <i class="far fa-clock"></i>: {{tripTime_plane}}hrs</span>
                             </label>
                         </p>
                         <br>
                         <p>
                             <label>
                                 <input id="train" type="radio" name="checkbox" />
-                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-train"></i>: ___{{co2var}} CO2
-                                    tons <i class="fas fa-road"></i>: ___
-                                    {{tripDistance}} miles <i class="far fa-clock"></i>: ___{{tripTime}}hours</span>
+                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-train"></i>: {{co2var_train}} CO2
+                                    tons <i class="fas fa-road"></i>: 
+                                    {{tripDistance}} miles <i class="far fa-clock"></i>: {{tripTime_train}}hrs</span>
                             </label>
                         </p>
                         <br>
                         <p>
                             <label>
                                 <input id="bus" type="radio" name="checkbox" />
-                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-bus-alt"></i>: ___{{co2var}} CO2
-                                    tons <i class="fas fa-road"></i>: ___
-                                    {{tripDistance}} miles <i class="far fa-clock"></i>: ___{{tripTime}}hours</span>
+                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-bus-alt"></i>: {{co2var_bus}} CO2
+                                    tons <i class="fas fa-road"></i>: 
+                                    {{tripDistance}} miles <i class="far fa-clock"></i>: {{tripTime_bus}}hrs</span>
                             </label>
                         </p>
                         <br>
                         <p>
                             <label>
                                 <input id="car" type="radio" name="checkbox" />
-                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-car"></i>: ___{{co2var}} CO2 tons
-                                    <i class="fas fa-road"></i>: ___
-                                    {{tripDistance}} miles <i class="far fa-clock"></i>: ___{{tripTime}}hours</span>
+                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-car"></i>: {{co2var_car}} CO2 tons
+                                    <i class="fas fa-road"></i>: 
+                                    {{tripDistance}} miles <i class="far fa-clock"></i>: {{tripTime_car}}hrs</span>
                             </label>
                         </p>
                         <br>
@@ -135,33 +135,18 @@
         </div>
 
 <script type="text/javascript"
-    src={process.env.GOOGLE_SRC_ONE}></script>
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6YDdaRNCGktlvWISrGBjv75lcHfR-l44&libraries=places"></script>
 
 <script>
-    var input = document.getElementById('departcity');
-    var autocomplete = new google.maps.places.Autocomplete(input);
-    var input = document.getElementById('arrivecity');
-    var autocomplete = new google.maps.places.Autocomplete(input);
+    var options = {
+            types: ['(cities)']
+        };
 
-    $(document).ready(function () {
-        $("#tripSubmit").on("click", function () {
-            event.preventDefault();
-            let googleApiKey = "AIzaSyB6YDdaRNCGktlvWISrGBjv75lcHfR-l44"
-            let cityOne = ($("#departcity").val().split(", ").join('+'))
-            let cityTwo = ($("#arrivecity").val().split(", ").join('+'))
-            let vehicleType = "driving"
-            console.log($("#departcity").val().split(", ").join('+'));
-            console.log($("#arrivecity").val().split(", ").join('+'));
-            let googleURL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + cityOne + "&destinations=" + cityTwo + "&mode=" + vehicleType + "&language=en-FR&key=" + googleApiKey;
-            console.log(googleURL)
-            $.ajax({
-                url: googleURL,
-                method: "GET"
-            }).then(function (response) {
-                console.log(response)
-            })
-        })
-    });
+    var input = document.getElementById('departcity');
+    var autocomplete = new google.maps.places.Autocomplete(input,options);
+    var input = document.getElementById('arrivecity');
+    var autocomplete = new google.maps.places.Autocomplete(input,options);
+
 
 
 </script>
