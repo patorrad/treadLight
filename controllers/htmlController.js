@@ -61,7 +61,10 @@ router.get("/register", function (req, res) {
 router.post("/register", function (req, res) {
     db.User.create(req.body).then(function (data) {
         res.json(data);
-    }).catch(err=>console.log("register err", err))
+    }).catch(err=>{
+        console.log("register err", err);
+        res.send(400)
+    })
 });
 
 // trip route loads the page

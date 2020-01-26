@@ -48,5 +48,8 @@ $("#registerForm").submit(event=>{
        else {
            alert('Please enter all information')
        }
-    })
+    }).catch(err => {
+        console.log(err);
+        alert("Request did not work. Please try again.")
+    });
 });

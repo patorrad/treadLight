@@ -17,6 +17,14 @@
       travel_mode: {
         type: DataTypes.STRING,
         allowNull: false
+      },
+      starting_city: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      ending_city: {
+        type: DataTypes.STRING,
+        allowNull: false
       }
     });
   
