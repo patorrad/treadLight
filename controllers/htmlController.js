@@ -91,6 +91,7 @@ router.get("/trip/", function (req, res) {
     res.render("trip",{istrip:true });
 });
 
+
 router.get("/retrieveTripData/:start/:end", function (req, res) {
     let googleApiKey = process.env.GOOGLE_API_KEY
     let cityOne = req.params.start
@@ -113,6 +114,7 @@ router.get("/retrieveTripData/:start/:end", function (req, res) {
     })
 })
 
+
 // router.get("/retrieveTripData/:start/:end", function (req, res) {
 //     let googleApiKey = process.env.GOOGLE_API_KEY
 //     let cityOne = req.params.start
@@ -127,10 +129,38 @@ router.get("/retrieveTripData/:start/:end", function (req, res) {
 //             tripDistance: response.data.rows[0].elements[0].distance.text,
 //         }
 //         console.log(ourData)
-//         res.json(response.data);
+//         res.render("trip", ourData);
 //         // res.render("trip", ourData);
 //     })
 // })
+
+router.get("/retrieveTripData/:start/:end", function (req, res) {
+    let googleApiKey = process.env.GOOGLE_API_KEY
+    let cityOne = req.params.start
+    let cityTwo = req.params.end
+    let vehicleType = "driving"
+
+    let googleURL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + cityOne + "&destinations=" + cityTwo + "&mode=" + vehicleType + "&language=en-FR&key=" + googleApiKey;
+    axios.get(googleURL).then(response => {
+        // res.json(response.data);
+        const ourData = {
+            tripDistance: Math.round(response.data.rows[0].elements[0].distance.value * 0.000621371),
+            tripTime_car: (response.data.rows[0].elements[0].distance.value * 0.000621371 / 40).toFixed(2),
+            co2var_car: (response.data.rows[0].elements[0].distance.value * 0.000621371 * 1.10231e-6 * 368).toFixed(3),
+            tripTime_plane: (response.data.rows[0].elements[0].distance.value * 0.000621371 / 550).toFixed(2),
+            co2var_plane: (response.data.rows[0].elements[0].distance.value * 0.000621371 * 1.10231e-6 * 188).toFixed(3),
+            tripTime_train: (response.data.rows[0].elements[0].distance.value * 0.000621371 / 550).toFixed(2),
+            co2var_train: (response.data.rows[0].elements[0].distance.value * 0.000621371 * 1.10231e-6 * 147).toFixed(3),
+            tripTime_bus: (response.data.rows[0].elements[0].distance.value * 0.000621371 / 10).toFixed(2),
+            co2var_bus: (response.data.rows[0].elements[0].distance.value * 0.000621371 * 1.10231e-6 * 43).toFixed(3),
+            cityOne: cityOne,
+            cityTwo: cityTwo,
+        }
+        console.log(ourData)
+        //res.json(ourData);
+        res.render("trip", ourData);
+    })
+})
 
 // profile route loads profile.html with data from our tables
 router.get("/profile", function (req, res) {
