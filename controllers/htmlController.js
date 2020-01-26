@@ -110,6 +110,17 @@ router.get("/trip/", function (req, res) {
 //     })
 // })
 
+router.get("/outputTripData/:co2/:distance/:time", function (req, res) {
+    
+    const myData = {
+        tripDistance: req.params.distance,
+        my_tripTime: req.params.time,
+        my_co2var: req.params.co2,
+        my_money: (req.params.co2 * 10).toFixed(2),
+    }
+        res.render("trip", myData);
+    });
+
 router.get("/retrieveTripData/:start/:end", function (req, res) {
     let googleApiKey = process.env.GOOGLE_API_KEY
     let cityOne = req.params.start
