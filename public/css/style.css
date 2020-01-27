@@ -5,6 +5,9 @@
 h1, h2, h3, h4 {
     font-family: 'Shadows Into Light', cursive;
 }
+.mynav {
+    margin-bottom: 3pt;
+}
 
 h5 {
     font-family: 'Nunito', sans-serif;
@@ -17,3 +20,4 @@ h5 {
 #head1 {
     text-align: center;
 }
+
