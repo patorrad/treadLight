@@ -17,6 +17,8 @@ $(document).ready(function(){
         console.log("Vehicle info: ", vehicle);
         let myData = vehicle.value.split(",");
         myData['type'] = vehicle.id;
+        const cityOne = $("#startcityp").text();
+        const cityTwo = $("#endcityp").text();
         // $('input[name="checkbox"]').change(function(e) {
         //     vehicle = $(this).id();
         // })
@@ -24,7 +26,7 @@ $(document).ready(function(){
         // const vehicle = $('#checkbox').id();
         // const arrive = $('#arrivecity').val();
         //window.location.replace(`/retrieveTripData/${depart}/${arrive}`);
-        window.location.href = `/outputTripData/${myData[0]}/${myData[1]}/${myData[2]}/${myData.type}`;
+        window.location.href = `/outputTripData/${myData[0]}/${myData[1]}/${myData[2]}/${myData.type}/${cityOne}/${cityTwo}`;
     });
     
     $("#loginForm").submit(event=>{
@@ -75,17 +77,6 @@ $(document).ready(function(){
     
     $(".donate-btn").click(function(){
         window.open("https://www.standfortrees.org");
-        const plane = $("#plane").val();
-        const train = $("#train").val();
-        const bus = $("#bus").val();
-        const car = $("#car").val();
-        const travel_mode = {
-            plane: plane,
-            train: train,
-            bus: bus,
-            car: car
-        }
-        // $.post?
     });
     
     $("#radioForm").change(function(event){
