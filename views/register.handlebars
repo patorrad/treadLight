@@ -1,0 +1,229 @@
+{{!-- NavBar --}}
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a href="/" id="logo-container" class="brand-logo" style="color: green;"><i
+          class="material-icons">loop</i>TreadLight</a>
+      <ul class="right hide-on-med-and-down">
+        {{!-- <li><a href="/treadLight/views/profile.handlebars" style="color: rgb(6, 43, 6)">Profile</a></li>
+        <li><a href="/treadLight/views/register.handlebars" --}}
+            class="btn-large waves-effect waves-light green lighten-1">Sign up</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+        {{!-- <li><a href="/treadLight/views/profile.handlebars">Profile</a></li>
+        <li><a href="/treadLight/views/register.handlebars"
+            class="btn-large waves-effect waves-light green lighten-1">Sign up</a></li> --}}
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+ 
+    </div>
+  </nav>
+
+
+{{!-- SingUp form --}}
+<div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <br><br>
+            <div class="row">
+                <h4 class="header col s12 light" style="color: rgb(12, 56, 12);">Make educated travel decisions to
+                    reduce your carbon footprint! </h4>
+            </div>
+            <br><br>
+
+        </div>
+    </div>
+    <div class="parallax"><img src="/img/tree.jpg" alt="Unsplashed background img 1"></div>
+</div>
+<div class="row whitesmoke">
+    <div class="col s12 m4 offset-m4">
+        <div class="card">
+            <div class=" center card-action green lighten-1 white-text">
+                <h5>Join TreadLight Today</h5>
+            </div>
+            <form id="registerForm">
+            <div class="card-content">
+                <div class="form-field">
+                    <label for="firstname">First Name</label>
+                    <input type="text" id="firstname">
+                </div><br>
+                <div class="form-field">
+                    <label for="lastname">Last Name</label>
+                    <input type="text" id="lastname">
+                </div><br>
+
+                <div class="form-field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email">
+                </div><br>
+
+                <div class="form-field">
+                    <label for="password">Password</label>
+                    <input type="password" id="password">
+                </div><br>
+
+              <div class="form-field">
+                    <label for="city">City</label>
+                    <input type="city" id="city">
+                </div><br>
+    
+                <div id="car-data">
+                    <label for="car-data">Vehicle Information</label>
+                    <br><br>
+        <select class="browser-default" id="year">
+            <option value="" disabled="disabled" selected="selected">Choose year</option>
+        </select>
+        <select class="browser-default" id="make">
+            <option value="" disabled="disabled" selected="selected">Choose make</option>
+        </select>
+        <select class="browser-default" id="model">
+            <option value="" disabled="disabled" selected="selected">Choose model</option>
+        </select>
+        <select class="browser-default" id="trim">
+            <option value="" disabled="disabled" selected="selected">Choose trim</option>
+        </select>
+    </div>
+    <br>
+                <div class="form-field">
+                        <p>
+                            <label>
+                                <input type="checkbox" />
+                                <span>Remember me</span>
+                            </label>
+                        </p>
+                </div><br>
+                <div class="form-field">
+                    <button class="btn-large waves-effect waves-dark green" style="width: 100%;">Sign Me Up!</button>
+                </div><br>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+
+
+<div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <div class="row center">
+            </div>
+        </div>
+    </div>
+    <div class="parallax"><img src="img/sky-forest.jpg" alt="Unsplashed background img 2"></div>
+</div>
+
+{{!-- <script>    
+    $(document).ready(function() {
+  let queryURLYear = "https://www.fueleconomy.gov/ws/rest/vehicle/menu/year";
+  $.ajax({
+    url: queryURLYear,
+    method: "GET"
+  }).then(function(response) {
+    let years = response.getElementsByTagName("menuItem");
+    for (let index = 0; index < years.length; index++)
+    {
+      let year = years[index].childNodes[1].innerHTML;
+      let newYear = $("<option>").attr("value",year).text(year);
+      $("#year").append(newYear);
+    } 
+  });
+  $("#year").on("change", function() {
+    $("#make")
+      .find('option')
+      .remove()
+      .end()
+      .append('<option value="whatever">Choose make</option>')
+      .val('whatever');
+    $("#model")
+      .find('option')
+      .remove()
+      .end()
+      .append('<option value="whatever">Choose model</option>')
+      .val('whatever');
+    $("#trim")
+      .find('option')
+      .remove()
+      .end()
+      .append('<option value="whatever">Choose trim</option>')
+      .val('whatever')
+    let queryURLModel = "https://www.fueleconomy.gov/ws/rest/vehicle/menu/make?year=" + this.value;
+    $.ajax({
+      url: queryURLModel,
+      method: "GET"
+    }).then(function(response) {
+      let makes = response.getElementsByTagName("menuItem");
+      for (let index = 0; index < makes.length; index++)
+      {
+        let make = makes[index].childNodes[1].innerHTML;
+        console.log(make);
+        let newMake = $("<option>").attr("value", make).text(make);
+        $("#make").append(newMake);
+      } 
+    });        
+  })
+  $("#make").on("change", function() {
+    $("#model")
+      .find('option')
+      .remove()
+      .end()
+      .append('<option value="whatever">Choose model</option>')
+      .val('whatever');
+    $("#trim")
+      .find('option')
+      .remove()
+      .end()
+      .append('<option value="whatever">Choose trim</option>')
+      .val('whatever')
+    let queryURLModel = "https://www.fueleconomy.gov/ws/rest/vehicle/menu/model?year=" + $("#year").val() + "&make=" + this.value;
+    $.ajax({
+      url: queryURLModel,
+      method: "GET"
+    }).then(function(response) {
+      let models = response.getElementsByTagName("menuItem");
+      for (let index = 0; index < models.length; index++)
+      {
+        let model = models[index].childNodes[1].innerHTML;
+        console.log(model);
+        let newModel = $("<option>").attr("value", model).text(model);
+        $("#model").append(newModel);
+      } 
+    });        
+  })
+  $("#model").on("change", function() {
+    $("#trim")
+      .find('option')
+      .remove()
+      .end()
+      .append('<option value="whatever">Choose trim</option>')
+      .val('whatever')
+    let queryURLTrim = "https://www.fueleconomy.gov/ws/rest/vehicle/menu/options?year=" + $("#year").val() + "&make=" + $("#make").val() + "&model=" + $("#model").val();
+    $.ajax({
+      url: queryURLTrim,
+      method: "GET"
+    }).then(function(response) {
+      let trims = response.getElementsByTagName("menuItem");
+      for (let index = 0; index < trims.length; index++)
+      {
+        let trim = trims[index].childNodes[0].innerHTML;
+        let id = trims[index].childNodes[1].innerHTML;
+        let newTrim = $("<option>").attr("value", id).text(trim);
+        $("#trim").append(newTrim);
+      } 
+    });        
+  })
+  $("#find-car").on("click", function(event) {
+    event.preventDefault();
+    let queryURL= "https://www.fueleconomy.gov/ws/rest/vehicle/" + $("#trim").children()[1].value;
+    console.log($("#trim").children()[1].value);
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      let test = response.getElementsByTagName("vehicle");
+         console.log(test[0].childNodes[15].innerHTML);
+    });
+  });
+</script> --}}

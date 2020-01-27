@@ -1,0 +1,335 @@
+  {{!-- NavBar --}}
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a href="/" id="logo-container" class="brand-logo" style="color: green;"><i
+          class="material-icons">loop</i>TreadLight</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/trip" style="color: rgb(6, 43, 6)">Trip</a></li>
+        <li><a href="/" class="btn-large waves-effect waves-light green lighten-1">Log out</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+        {{!-- <li><a href="/treadLight/views/profile.handlebars">Profile</a></li>
+        <li><a href="/treadLight/views/register.handlebars"
+            class="btn-large waves-effect waves-light green lighten-1">Sign up</a></li> --}}
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+ 
+    </div>
+  </nav>
+
+
+{{!-- profile --}}
+<style>
+    .card {
+    height:50%;
+    }
+    .parallax-container {
+      height: 50%;
+    }
+    i.icon-blue {
+    color: orange;
+    }
+</style>
+<div class="parallax-container">
+    <div class="parallax"><img src="img/sky-forest.jpg"></div>
+    <div class="container">
+        <br><br>
+        <div class="row">
+            <div class="col s12 m12">
+                <div class="card">
+                    <div class="center card-action green lighten-1 white-text">
+                        <h5>Hi {{first_name}}!</h5>
+                    </div>
+                    <div class="card-content">
+                        <ul class="collection with-header">
+                            <li class="collection-header"><h5>Your current status with planet earth {{#each positive_stars}}<i class="material-icons right icon-blue tooltipped"vdata-position="bottom" data-tooltip="Strive to reach 3 full stars to minimize your carbon footprint!">star</i>{{/each}}{{#each negative_stars}}<i class="material-icons right icon-blue">star_border</i>{{/each}}</h5>
+                            </li>
+                    </div>
+                    <div class="card-image center">
+                        <p>Carbon Used and Saved in Your Last 5 Trips</p>
+                        <div class="center-align" id="tester" style="margin-right: 20px;"></div><br>
+                        <p class="center-align">                            
+                            <ul class="collapsible">
+                                <li>
+                                <div class="collapsible-header"><i class="material-icons">whatshot</i>One time donation!<div>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div><div style="color: green">You have donated {{donated}}&nbspDollars</div>
+                                </div>
+                                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                                </li>
+                                <li>
+                                <div class="collapsible-header"><i class="material-icons">directions_car</i>{{#if car}}Update car</a>{{else}}Add car</a>{{/if}}<div>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div><div id="current-car" style="color: green">{{car}}</div></div>
+                                <div class="collapsible-body" id="car-btn"><span>Adding your car to your profile helps provide more accurate carbon emissions.</span><button class="right" id="car-save-btn">Save</button><br><br>
+                                    <div id="car-data">
+                                        <select class="browser-default" id="year">
+                                            <option value="" disabled="disabled" selected="selected">Choose year</option>
+                                        </select>
+                                        <select class="browser-default" id="make">
+                                            <option value="" disabled="disabled" selected="selected">Choose make</option>
+                                        </select>
+                                        <select class="browser-default" id="model">
+                                            <option value="" disabled="disabled" selected="selected">Choose model</option>
+                                        </select>
+                                        <select class="browser-default" id="trim">
+                                            <option value="" disabled="disabled" selected="selected">Choose trim</option>
+                                        </select><br>
+                                    </div>
+                                </div>
+                                </li>
+                                <li>
+                                <div class="collapsible-header"><i class="material-icons">place</i>{{#if city}}Update city</a>{{else}}Add city</a>{{/if}}<div>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div><div id="current-city" style="color: green">Your current city is {{city}}</div></div>
+                                <div class="collapsible-body">
+                                    <span>Your home city will be saved in your profile for more accurate trip searches.</span>
+                                    <form id="find-trip-info">
+                                        <div class="form-field" id="city-data">
+                                            <label for="home-city">Home City<button class="right" id="city-save-btn">Save</button></label>
+                                            <input type="text" id="home-city">
+                                        </div><br><br><br><br><br><br><br>
+                                    </form>
+                                </div>
+                                </li>
+                            </ul>
+                        </p><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <
+
+<script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6YDdaRNCGktlvWISrGBjv75lcHfR-l44&libraries=places">
+</script>
+<script>
+    //Plotly graph
+    let used_carbon_last_five = "{{used_carbon.last_five}}".split(",");
+    let saved_carbon_last_five = "{{saved_carbon.last_five}}".split(",");
+    console.log(used_carbon_last_five);
+    let columnNum = 5;
+    for (let index = 0; index < columnNum; index++){
+        if (used_carbon_last_five[index] == null) used_carbon_last_five[index] = 0;
+        if (saved_carbon_last_five[index] == null) saved_carbon_last_five[index] = 0;
+        used_carbon_last_five[index] = +used_carbon_last_five[index]; 
+        saved_carbon_last_five[index] = +saved_carbon_last_five[index]; 
+    };
+    
+    TESTER = document.getElementById('tester');
+    var Emitted = {
+        x: ['1', '2', '3', '4', '5'],
+        y: used_carbon_last_five,
+        name: 'Emitted',
+        type: 'bar'
+    };
+    var Recovered = {
+        x: ['1', '2', '3', '4', '5'],
+        y: saved_carbon_last_five,
+        name: 'Recovered',
+        type: 'bar'
+    };
+    var data = [Emitted, Recovered];
+    var layout = { 
+        barmode: 'stack', 
+        //title: 'Carbon Used and Saved in Your Last 5 Trips', 
+        yaxis: {
+            title: { text: 'Tons of Carbon'}
+        }
+    };
+	Plotly.newPlot( TESTER, data, layout, {responsive: true});
+
+    $(document).ready(function(){
+        
+        //Getting car info
+        function getCar(id) {
+            let queryURL = "https://www.fueleconomy.gov/ws/rest/vehicle/" + id;
+            $.ajax({
+            url: queryURL,
+            method: "GET"
+            }).then(function(response) {
+            let vehicleMake = response.getElementsByTagName("make")[0].innerHTML;
+            let vehicleModel = response.getElementsByTagName("model")[0].innerHTML;
+            $("#current-car").text("Your current vehicle is a " + vehicleMake + " - " + vehicleModel);
+            });
+        }
+        //Car id is in page upon load populated through handlebars
+        getCar($("#current-car").text());
+        //Initialize collapsible for materialize
+        $('.collapsible').collapsible();
+        //Initialize toolip for materialize
+        $('.tooltipped').tooltip();
+        //Initialize google autcomplete
+        var options = {
+            types: ['(cities)']
+        };
+        var input = document.getElementById('home-city');
+        var autocomplete = new google.maps.places.Autocomplete(input, options);
+
+        //Add/update city
+        $("#city-save-btn").on("click", function() {
+            event.preventDefault();
+            let inputCheck = autocomplete.getPlace();
+            if( inputCheck === 'undefined' || inputCheck == null) 
+            {
+                if ($("#city-warning").length === 0) {
+                    $("#city-data").append(`<div class="left red-text" id="city-warning">
+                                            City did not match any results! Please try again.
+                                            </div>`);
+                };
+            } else {
+                $("#city-save-btn").remove();
+                {{!-- $("#city-data").append(`<div class="preloader-wrapper active small right" id="spinner">
+                                                <div class="spinner-layer spinner-blue-only">
+                                                <div class="circle-clipper left">
+                                                    <div class="circle"></div>
+                                                </div><div class="gap-patch">
+                                                    <div class="circle"></div>
+                                                </div><div class="circle-clipper right">
+                                                    <div class="circle"></div>
+                                                </div>
+                                                </div>
+                                            </div>`); --}}
+                $("#city-warning").remove();
+                let city = $("#home-city").val();
+                $.ajax({
+                    method: "PUT",
+                    url: "/api/update/city/",
+                    data: { city: city }
+                }).then(function() {
+                    $("#current-city").text("Your current city is " + city);
+                    $("#city-data").prepend(`<div class="right">Done</div>`);
+                });
+            };    
+        });
+
+        ////  Car search modal  //// ////*****Need to add switch of car upon submit
+        //Look up year
+        let queryURLYear = "https://www.fueleconomy.gov/ws/rest/vehicle/menu/year";
+        $.ajax({
+            url: queryURLYear,
+            method: "GET"
+        }).then(function(response) {
+            let years = response.getElementsByTagName("menuItem");
+            for (let index = 0; index < years.length; index++)
+            {
+            let year = years[index].childNodes[1].innerHTML;
+            let newYear = $("<option>").attr("value",year).text(year);
+            $("#year").append(newYear);
+            } 
+        });
+        //Look up make
+        $("#year").on("change", function() {
+            $("#make")
+            .find('option')
+            .remove()
+            .end()
+            .append('<option value="whatever">Choose make</option>')
+            .val('whatever');
+            $("#model")
+            .find('option')
+            .remove()
+            .end()
+            .append('<option value="whatever">Choose model</option>')
+            .val('whatever');
+            $("#trim")
+            .find('option')
+            .remove()
+            .end()
+            .append('<option value="whatever">Choose trim</option>')
+            .val('whatever')
+            let queryURLModel = "https://www.fueleconomy.gov/ws/rest/vehicle/menu/make?year=" + this.value;
+            $.ajax({
+            url: queryURLModel,
+            method: "GET"
+            }).then(function(response) {
+            let makes = response.getElementsByTagName("menuItem");
+            for (let index = 0; index < makes.length; index++)
+            {
+                let make = makes[index].childNodes[1].innerHTML;
+                console.log(make);
+                
+                let newMake = $("<option>").attr("value", make).text(make);
+                $("#make").append(newMake);
+            } 
+            });        
+        })
+        //Look up model
+        $("#make").on("change", function() {
+            $("#model")
+            .find('option')
+            .remove()
+            .end()
+            .append('<option value="whatever">Choose model</option>')
+            .val('whatever');
+            $("#trim")
+            .find('option')
+            .remove()
+            .end()
+            .append('<option value="whatever">Choose trim</option>')
+            .val('whatever')
+            let queryURLModel = "https://www.fueleconomy.gov/ws/rest/vehicle/menu/model?year=" + $("#year").val() + "&make=" + this.value;
+            $.ajax({
+            url: queryURLModel,
+            method: "GET"
+            }).then(function(response) {
+            let models = response.getElementsByTagName("menuItem");
+            for (let index = 0; index < models.length; index++)
+            {
+                let model = models[index].childNodes[1].innerHTML;
+                console.log(model);
+                
+                let newModel = $("<option>").attr("value", model).text(model);
+                $("#model").append(newModel);
+            } 
+            });        
+        })
+        //Look up trim
+        $("#model").on("change", function() {
+            $("#trim")
+            .find('option')
+            .remove()
+            .end()
+            .append('<option value="whatever">Choose trim</option>')
+            .val('whatever')
+            let queryURLTrim = "https://www.fueleconomy.gov/ws/rest/vehicle/menu/options?year=" + $("#year").val() + "&make=" + $("#make").val() + "&model=" + $("#model").val();
+            $.ajax({
+            url: queryURLTrim,
+            method: "GET"
+            }).then(function(response) {
+            let trims = response.getElementsByTagName("menuItem");
+            for (let index = 0; index < trims.length; index++)
+            {
+                let trim = trims[index].childNodes[0].innerHTML;
+                let id = trims[index].childNodes[1].innerHTML;
+                
+                let newTrim = $("<option>").attr("value", id).text(trim);
+                $("#trim").append(newTrim);
+                console.log(id);
+            } 
+            });        
+        })
+        //Save car id for future look up in our db
+        $("#car-save-btn").on("click", function() {
+            event.preventDefault();
+            
+            if($("#trim").children().length < 2) 
+            {
+                if ($("#car-warning").length < 1) {
+                    $("#car-data").append(`<div class="left red-text" id="car-warning">
+                                            No personal jets allowed! Please try again.
+                                            </div>`);
+                };
+            } else {
+                var carId = $("#trim").children("option:selected").val();
+                console.log(carId);
+                $.ajax({
+                    method: "PUT",
+                    url: "/api/update/car/",
+                    data: { carId: carId }
+                }).then(function() {
+                    $("#car-save-btn").remove();
+                    $("#car-btn").prepend(`<div class="right">Done</div>`);
+                }).then(function() {
+                    getCar(carId);
+                });   
+            };         
+        });
+    });
+</script>

@@ -1,0 +1,64 @@
+  {{!-- NavBar --}}
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a href="/" id="logo-container" class="brand-logo" style="color: green;"><i
+          class="material-icons">loop</i>TreadLight</a>
+      <ul class="right hide-on-med-and-down">
+        {{!-- <li><a href="/treadLight/views/profile.handlebars" style="color: rgb(6, 43, 6)">Profile</a></li>
+        <li><a href="/treadLight/views/register.handlebars" 
+            class="btn-large waves-effect waves-light green lighten-1">Log out</a></li> --}}
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+        {{!-- <li><a href="/treadLight/views/profile.handlebars">Profile</a></li>
+        <li><a href="/treadLight/views/register.handlebars"
+            class="btn-large waves-effect waves-light green lighten-1">Sign up</a></li> --}}
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+ 
+    </div>
+  </nav>
+
+
+{{!-- login on image --}}
+<div class="parallax-container">
+    <div class="parallax"><img src="img/sky-forest.jpg"></div>
+    <div class="container">
+        <br><br>
+        <div class="row">
+            <div class="col s12 m4 offset-m4">
+                <div class="card">
+                    <div class="center card-action green lighten-1 white-text">
+                        <h5>TreadLight Login</h5>
+                    </div>
+                    <form id="loginForm">
+                        <div class="card-content">
+                            <div class="form-field">
+                                <label for="email">Email</label>
+                                <input type="text" id="email">
+                            </div><br>
+                            <div class="form-field">
+                                <label for="password">Password</label>
+                                <input type="password" id="password">
+                            </div><br>
+
+                            <div class="form-field">
+                                <p><label>
+                                        <input type="checkbox" />
+                                        <span>Remember me</span>
+                                    </label></p>
+                        </div><br>
+                        
+                        <div class="form-field">
+                            <button class="btn-large waves effect waves-dark green" style="width:100%;">Login</button>
+                            <a href="/register">Sign up here</a>
+                        </div><br>
+                        </div>
+                            </form>
+        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
