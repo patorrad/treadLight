@@ -137,13 +137,79 @@ router.get("/retrieveTripData/:start/:end", function (req, res) {
 
 // profile route loads profile.html with data from our tables
 router.get("/profile", function (req, res) {
-    db.User.findOne({
+    db.User.findOne({raw:true,
         where: {
             id: req.session.user.id
         }
     }).then(function (data) {
         if(req.session.user) {
-            res.render('profile',req.session.user);
+            console.log(data);
+            //Profile info to submit to profile.handlebars
+            let profileInfo = {
+                first_name: req.session.user.first_name,
+                used_carbon: {
+                    total: 0,
+                    last_five: []
+                },
+                saved_carbon: {
+                    total: 0,
+                    last_five: []
+                },
+                car: data.default_car,
+                city: data.default_city,
+                positive_stars: [],
+                negative_stars: [],
+                donated: 0
+                };
+            //Find all trip info
+            db.Trip.findAll({raw:true,
+                where: {
+                    UserId: data.id
+                }
+            }).then(function(result){ 
+                //Find total carbon used and saved      
+                for (trip in result) {
+                    profileInfo.used_carbon.total += result[trip].used_carbon;
+                    profileInfo.saved_carbon.total += result[trip].saved_carbon;
+                }
+                if (profileInfo.saved_carbon.total > 0.4 * profileInfo.saved_carbon.total) profileInfo.positive_stars = [0, 1, 2];                
+                if (profileInfo.saved_carbon.total < 0.4 * profileInfo.saved_carbon.total && profileInfo.saved_carbon.total > 0.2 * profileInfo.saved_carbon.total) 
+                {
+                    profileInfo.positive_stars = [0,1]; 
+                    profileInfo.negative_stars = [0]
+                }                
+                if (profileInfo.saved_carbon.total > 0) 
+                {
+                    profileInfo.positive_stars = [0]; 
+                    profileInfo.negative_stars = [0,1]
+                }                 
+                else profileInfo.negative_stars = [0,1,2];
+                //Find last five for plotly chart
+                let tripToDisplay = 0;
+                result.length < 5? tripToDisplay = result.length : tripToDisplay = 5;
+                for (let index = 0; index < tripToDisplay; index++){
+                    profileInfo.used_carbon.last_five[index] = result[index].used_carbon;
+                    profileInfo.saved_carbon.last_five[index] = result[index].saved_carbon;
+                };
+            }).then(function() {
+                //Find all donation info
+                db.Donation.findAll({raw:true,
+                where: {
+                    UserId: data.id
+                }
+            }).then(function(result) {
+                console.log(result);
+                //Final total donation
+                for (donation in result) {
+                    profileInfo.donated += result[donation].money;
+                };
+                console.log(profileInfo.donated);
+                console.log(profileInfo.used_carbon.last_five);
+                console.log(profileInfo.saved_carbon.last_five);
+                res.render('profile', profileInfo); 
+            });
+                
+            });
         }else {
             res.send('Need to Login')
         }
