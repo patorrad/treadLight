@@ -1,14 +1,14 @@
   module.exports = function(sequelize, DataTypes) {
     var Trip = sequelize.define("Trip", {
       used_carbon: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DECIMAL(10,3),
         allowNull: false,
         validate: {
           len: [1,500]
         }
       },
       saved_carbon: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DECIMAL(10,3),
         allowNull: false,
         validate: {
           len: [1,500]
@@ -17,15 +17,15 @@
       travel_mode: {
         type: DataTypes.STRING,
         allowNull: false
-      },
-      starting_city: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      ending_city: {
-        type: DataTypes.STRING,
-        allowNull: false
       }
+      // starting_city: {
+      //   type: DataTypes.STRING,
+      //   allowNull: false
+      // },
+      // ending_city: {
+      //   type: DataTypes.STRING,
+      //   allowNull: false
+      // }
     });
   
     Trip.associate = function(models) {

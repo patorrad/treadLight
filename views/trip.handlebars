@@ -124,9 +124,11 @@
                             <label>
                                 <span style="color: rgb(12, 56, 12);">
                                     TOTAL: <br>
-                                    {{my_co2var}} Tons of CO2
+                                    Transportation: <div id="vehicle">{{type}}</div>
+                                    Tons of CO2:
+                                    <div id="totalCO2">{{my_co2var}}</div>
                                      </span>
-                                     <br>
+                        
                                     <span style="color: rgb(12, 56, 12);">
                                         <i class="fas fa-road"></i>:
                                         {{tripDistance}} mi
@@ -139,14 +141,14 @@
                             </label>
                         </p>
                         <br>
-                        <p>Your total cost to offset this trip's CO2 is: <strong>${{my_money}}</strong></p>
+                        <p>Your total cost to offset this trip's CO2 is: $<strong id="suggestedDonation">{{my_money}}</strong></p>
                         <br>
 
 
                         <div class="form-field center">
                             <label for="donating">I chose to donate this amount:</label>
                             <input type="number" id="chosenDonation">
-                            <button class="center btn-large waves-effect waves-light green lighten-1" id="tripSubmit"
+                            <button class="center btn-large waves-effect waves-light green lighten-1" id="step2Submit"
                                 style="width: 65%;">Save this to my profile</button>
                         </div>
 
