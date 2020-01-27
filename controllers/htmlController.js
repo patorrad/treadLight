@@ -95,48 +95,6 @@ router.get("/trip/", function (req, res) {
 });
 
 
-router.get("/retrieveTripData/:start/:end", function (req, res) {
-    let googleApiKey = process.env.GOOGLE_API_KEY
-    let cityOne = req.params.start
-    let cityTwo = req.params.end
-    let vehicleType = "driving"
-
-    let googleURL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + cityOne + "&destinations=" + cityTwo + "&mode=" + vehicleType + "&language=en-FR&key=" + googleApiKey;
-    axios.get(googleURL).then(response => {
-        // res.json(response.data);
-        // const ourData = {
-        //     tripTime: response.data.rows[0].elements[0].duration.value,
-        //     tripDistance: response.data.rows[0].elements[0].distance.value,
-        // }
-        const milesOfTrip = response.data.rows[0].elements[0].distance.value * 0.000621371;
-        res.json(milesOfTrip);
-        // console.log(ourData)
-        // res.render("trip", ourData);
-        // res.json(ourData);
-        // res.render("trip", ourData);
-    })
-})
-
-
-// router.get("/retrieveTripData/:start/:end", function (req, res) {
-//     let googleApiKey = process.env.GOOGLE_API_KEY
-//     let cityOne = req.params.start
-//     let cityTwo = req.params.end
-//     let vehicleType = "driving"
-
-//     let googleURL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + cityOne + "&destinations=" + cityTwo + "&mode=" + vehicleType + "&language=en-FR&key=" + googleApiKey;
-//     axios.get(googleURL).then(response => {
-//         // res.json(response.data);
-//         const ourData = {
-//             tripTime: response.data.rows[0].elements[0].duration.text,
-//             tripDistance: response.data.rows[0].elements[0].distance.text,
-//         }
-//         console.log(ourData)
-//         res.render("trip", ourData);
-//         // res.render("trip", ourData);
-//     })
-// })
-
 router.get("/outputTripData/:co2/:distance/:time", function (req, res) {
     
     const myData = {
@@ -149,6 +107,7 @@ router.get("/outputTripData/:co2/:distance/:time", function (req, res) {
     });
 
 router.get("/retrieveTripData/:start/:end", function (req, res) {
+    console.log("hello world");
     let googleApiKey = process.env.GOOGLE_API_KEY
     let cityOne = req.params.start
     let cityTwo = req.params.end
