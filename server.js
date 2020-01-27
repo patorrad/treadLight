@@ -32,6 +32,8 @@ app.use(session({ secret: process.env.SESSION_SECRET, resave: true, saveUninitia
 // =============================================================
 // require("./develop/routes/api-routes.js")(app);
 // require("./develop/routes/html-routes.js")(app);
+const apiRoutes = require('./controllers/apiController');
+app.use(apiRoutes);
 const htmlRoutes = require('./controllers/htmlController');
 app.use(htmlRoutes);
 
