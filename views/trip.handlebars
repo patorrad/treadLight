@@ -12,22 +12,22 @@
         <div class="card">
             <div class=" center card-action green lighten-1 white-text">
                 <h4>Step 1</h4>
-                <h5>Choose your destination</h5>
+                <h5>Choose Your Destination</h5>
             </div>
 
             <div class="card-content">
                 <form id="find-trip-info">
                     <div class="form-field">
                         <label for="departcity">Departing City</label>
-                        <input type="text" id="departcity">
+                        <input type="text" id="departcity">{{cityOne}}
                     </div><br>
                      <div class="form-field">
                         <label for="arrivecity">Arrival City</label>
-                        <input type="text" id="arrivecity">
+                        <input type="text" id="arrivecity">{{cityTwo}}
                     </div><br>
                     <button class="btn-large waves-effect waves-dark green" id="tripSubmit"
                         style="width: 100%;">Submit</button>
-                    <br>
+
                 </form>              
             </div>        
         </div>
@@ -40,45 +40,53 @@
             </div>
 
             <div class="card-content">
-                <form id="find-trip-info">
+                <form id="carbon-info">
 
-                    <form action="#">
+                    <form id="radioForm">
+
                         <p>
                             <label>
-                                <input id="plane" type="radio" name="checkbox" />
-                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-plane"></i>: ___{{co2var}} CO2
-                                    tons <i class="fas fa-road"></i>: ___
-                                    {{tripDistance}} miles <i class="far fa-clock"></i>: ___{{tripTime}}hours</span>
+                                <input id="plane" type="radio" name="checkbox"
+                                    value="{{co2var_plane}},{{tripDistance}},{{tripTime_plane}}" />
+                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-plane"></i>: {{co2var_plane}} CO2
+                                    tons
+                                    <i class="fas fa-road"></i>:
+                                    {{tripDistance}} mi <i class="far fa-clock"></i>: {{tripTime_plane}}hrs </span>
                             </label>
                         </p>
                         <br>
                         <p>
                             <label>
-                                <input id="train" type="radio" name="checkbox" />
-                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-train"></i>: ___{{co2var}} CO2
-                                    tons <i class="fas fa-road"></i>: ___
-                                    {{tripDistance}} miles <i class="far fa-clock"></i>: ___{{tripTime}}hours</span>
+                                <input id="train" type="radio" name="checkbox"
+                                    value="{{co2var_train}},{{tripDistance}},{{tripTime_train}}" />
+                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-train"></i>: {{co2var_train}} CO2
+                                    tons <i class="fas fa-road"></i>:
+                                    {{tripDistance}} mi <i class="far fa-clock"></i>: {{tripTime_train}}hrs</span>
                             </label>
                         </p>
                         <br>
                         <p>
                             <label>
-                                <input id="bus" type="radio" name="checkbox" />
-                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-bus-alt"></i>: ___{{co2var}} CO2
-                                    tons <i class="fas fa-road"></i>: ___
-                                    {{tripDistance}} miles <i class="far fa-clock"></i>: ___{{tripTime}}hours</span>
+                                <input id="bus" type="radio" name="checkbox"
+                                    value="{{co2var_bus}},{{tripDistance}},{{tripTime_bus}}" />
+                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-bus-alt"></i>: {{co2var_bus}} CO2
+                                    tons <i class="fas fa-road"></i>:
+                                    {{tripDistance}} mi <i class="far fa-clock"></i>: {{tripTime_bus}}hrs</span>
                             </label>
                         </p>
                         <br>
                         <p>
                             <label>
-                                <input id="car" type="radio" name="checkbox" />
-                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-car"></i>: ___{{co2var}} CO2 tons
-                                    <i class="fas fa-road"></i>: ___
-                                    {{tripDistance}} miles <i class="far fa-clock"></i>: ___{{tripTime}}hours</span>
+                                <input id="car" type="radio" name="checkbox"
+                                    value="{{co2var_car}},{{tripDistance}},{{tripTime_car}}" />
+                                <span style="color: rgb(12, 56, 12);"><i class="fas fa-car"></i>: {{co2var_car}} CO2
+                                    tons
+                                    <i class="fas fa-road"></i>:
+                                    {{tripDistance}} mi <i class="far fa-clock"></i>: {{tripTime_car}}hrs</span>
                             </label>
                         </p>
                         <br>
+
                     </form>              
             </div>        
         </div>
@@ -92,24 +100,42 @@
             </div>
 
             <div class="card-content">
-                <form id="find-trip-info">
+                <form id="trip-output">
                     <div class="form-field">
-                        {{!-- <p style="color: rgb(12, 56, 12)">Be part of our community of people who no longer contribute to
-                            climate change. </p> --}}
+
+                        <p>
+                            <label>
+                                <span style="color: rgb(12, 56, 12);">TOTAL: {{my_co2var}} CO2 tons
+                                    <i class="fas fa-road"></i>:
+                                    {{tripDistance}} mi <i class="far fa-clock"></i>: {{my_tripTime}}hrs</span>
+                            </label>
+                        </p>
                         <br>
+                        <p>Your total cost to offset this trip's CO2 is: <strong>${{my_money}}</strong></p>
                         <br>
-                        {{!-- <div class="center">
-                            <i class="medium material-icons green-text">public</i>
-                        </div> --}}
-                        <br>
-                        <br>
+
+
+                        <div class="form-field center">
+                            <label for="donating">I chose to donate this amount:</label>
+                            <input type="text" id="departcity">
+                            <button class="center btn-large waves-effect waves-light green lighten-1" id="tripSubmit"
+                                style="width: 65%;">Save this to my profile</button>
+                        </div>
+
+                          
                     </div>
+                    <br>
+                    <br>
+
 
                     <div class="form-field center">
-                        <a href="https://standfortrees.org"
-                            class=" center btn-large waves-effect waves-light green lighten-1">Donate</a>
-                        {{!-- <button class="btn-large waves-effect waves-dark green" style="width: 100%;"><a href="https://standfortrees.org">Donate</a>Donate</button> --}}
+                        {{!-- <a href="https://standfortrees.org" --}}
+                        {{!-- class="donate-btn center btn-large waves-effect waves-light green lighten-1">Donate</a> --}}
+                        <button class="donate-btn btn-large center waves-effect waves-dark green"
+                            style="width: 100%;">Donate</button>
                     </div>
+
+
                 </form>              
             </div>        
         </div>
@@ -128,36 +154,22 @@
                 </div>
             <div class="parallax"><img src="img/sky-forest.jpg" alt="Unsplashed background img 2"></div>
         </div>
-
 <script type="text/javascript"
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6YDdaRNCGktlvWISrGBjv75lcHfR-l44&libraries=places"></script>
+{{!-- <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6YDdaRNCGktlvWISrGBjv75lcHfR-l44&callback=initMap">
+    </script> --}}
 
 <script>
+
+    var options = {
+        types: ["(cities)"]
+    }
+
     var input = document.getElementById('departcity');
-    var autocomplete = new google.maps.places.Autocomplete(input);
+    var autocomplete = new google.maps.places.Autocomplete(input, options);
     var input = document.getElementById('arrivecity');
-    var autocomplete = new google.maps.places.Autocomplete(input);
-
-    $(document).ready(function () {
-        $("#tripSubmit").on("click", function () {
-            event.preventDefault();
-            let googleApiKey = "AIzaSyB6YDdaRNCGktlvWISrGBjv75lcHfR-l44"
-            let cityOne = ($("#departcity").val().split(", ").join('+'))
-            let cityTwo = ($("#arrivecity").val().split(", ").join('+'))
-            let vehicleType = "driving"
-            console.log($("#departcity").val().split(", ").join('+'));
-            console.log($("#arrivecity").val().split(", ").join('+'));
-            let googleURL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + cityOne + "&destinations=" + cityTwo + "&mode=" + vehicleType + "&language=en-FR&key=" + googleApiKey;
-            console.log(googleURL)
-            $.ajax({
-                url: googleURL,
-                method: "GET"
-            }).then(function (response) {
-                console.log(response)
-            })
-        })
-    });
-
+    var autocomplete = new google.maps.places.Autocomplete(input, options);
 
 
 </script>
