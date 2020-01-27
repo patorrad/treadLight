@@ -18,11 +18,11 @@ TreadLight is a free application for eco-conscious individuals that are looking 
 -City
 -Vehicle Information: Year, Make, Model, trim
 
-![Register Page](link-to-image)
+![Register Page](https://github.com/patorrad/treadLight/blob/development/public/img/register.png)
 
 ### Existing users can simply log in with their username and password: 
 
-![Login Page](link-to-image) 
+![Login Page](https://github.com/patorrad/treadLight/blob/development/public/img/loginpage.png) 
 
 ### Once a user is logged in, they can start to plan their next trip, user will choose:
 
@@ -61,8 +61,8 @@ API's Used:
 
 
 ## Credits
-Alexa (GitHub:alexahanthony )
-Isabel (GitHub:isabeluriarte ) 
+Alexa Anthony (GitHub:alexahanthony )
+Isabel  Uriarte (GitHub:isabeluriarte ) 
 Jaqueline Upton (GitHub:jupton2020 ) 
-Paulo (GitHub:patorrad ) 
+Paolo Torrado  (GitHub:patorrad ) 
 
