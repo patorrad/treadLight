@@ -10,10 +10,11 @@ $(document).ready(function(){
         window.location.href = `/retrieveTripData/${depart}/${arrive}`;
     });
     
-    $("#carbon-info").submit(event=>{
+    $("#carbon-info").click(event=>{
         event.preventDefault();
         console.log("form submit!");
         let vehicle = document.querySelector('input[name="checkbox"]:checked');
+        console.log("Vehicle info: ", vehicle);
         let myData = vehicle.value.split(",");
         // $('input[name="checkbox"]').change(function(e) {
         //     vehicle = $(this).id();
@@ -90,8 +91,10 @@ $(document).ready(function(){
         console.log(event)
     });
 
-    $("#tripSubmit").click(function(){
-
-    });
+    // $("#tripSubmit").click(function(){
+    //     const chosenDonation = $("#chosenDonation").val();
+    //     const suggestedDonation = ;
+    //     const 
+    // });
 
 });
