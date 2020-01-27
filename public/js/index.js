@@ -88,7 +88,7 @@ $(document).ready(function(){
         const chosenDonation = $("#chosenDonation").val();
         const conversionFactor = 10
         const offsetAmount = chosenDonation/conversionFactor;
-        const totalCO2 = document.getElementById("totalCO2").innerHTML;
+        const totalCO2 = document.getElementById("totalCO2").innerHTML.split(" ")[0];
         const vehicle = document.getElementById("vehicle").innerHTML;
        $.ajax({
            url: "/createTrip",
