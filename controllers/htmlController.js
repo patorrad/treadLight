@@ -115,7 +115,7 @@ router.get("/retrieveTripData/:start/:end", function (req, res) {
 
     let googleURL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + cityOne + "&destinations=" + cityTwo + "&mode=" + vehicleType + "&language=en-FR&key=" + googleApiKey;
     axios.get(googleURL).then(response => {
-        // res.json(response.data);
+        console.log(response.data);
         const ourData = {
             tripDistance: Math.round(response.data.rows[0].elements[0].distance.value * 0.000621371),
             tripTime_car: (response.data.rows[0].elements[0].distance.value * 0.000621371 / 40).toFixed(2),
