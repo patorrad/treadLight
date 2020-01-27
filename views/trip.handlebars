@@ -30,11 +30,11 @@
                 <form id="find-trip-info">
                     <div class="form-field">
                         <label for="departcity">Departing City</label>
-                        <input type="text" id="departcity">{{cityOne}}
+                        <input type="text" id="departcity" ><p id='startcityp'>{{cityOne}}</p>
                     </div><br>
                      <div class="form-field">
                         <label for="arrivecity">Arrival City</label>
-                        <input type="text" id="arrivecity">{{cityTwo}}
+                        <input type="text" id="arrivecity" data-city={{cityTwo}}><p id='endcityp'>{{cityTwo}}</p>
                     </div><br>
                     <button class="btn-large waves-effect waves-dark green" id="tripSubmit"
                         style="width: 100%;">Submit</button>
@@ -119,7 +119,6 @@
 
                         <p>
                             <label>
-
                                 <span style="color: rgb(12, 56, 12);">
                                     <h5><div id="vehicle">{{type}}</div></h5>
 
@@ -128,15 +127,14 @@
                                      </span>
                         <br>
                                     <span style="color: rgb(12, 56, 12);">
-                                        <h6><i class="fas fa-road"></i>:
-                                        {{tripDistance}} mi</h6>
+                                        <i class="fas fa-road"></i>:
+                                        {{selectedTripDistance}} mi
                                     </span>
                                     <br>
                                     <span style="color: rgb(12, 56, 12);">
                                         <h6><i class="far fa-clock"></i>: {{my_tripTime}}hrs</h6>
                                     </span>
                                    
-
                             </label>
                         </p>
                         <br>
@@ -147,7 +145,6 @@
                         <br>
 
                         <div class="form-field center">
-
                             <label for="donating">I chose to donate this amount:</label>
                             <input type="number" id="chosenDonation">
                             <button class="center btn-large waves-effect waves-light green lighten-1" id="step2Submit"
@@ -163,10 +160,7 @@
                     <div class="form-field center">
                         <button class="donate-btn btn-large center waves-effect waves-dark green"
                             style="width: 100%;">Donate</button>
-
                     </div>
-                    <button class="btn-large waves-effect waves-dark green" id="tripSubmit"
-                        style="width: 100%;">Save this to my profile</button>
 
                 </form>   
                     </div>
@@ -188,7 +182,7 @@
                                 </div>
                         </div>
                 </div>
-            <div class="parallax"><img src="img/sky-forest.jpg" alt="Unsplashed background img 2"></div>
+            <div class="parallax"><img src="/img/sky-forest.jpg" alt="Unsplashed background img 2"></div>
         </div>
 
 <script type="text/javascript"
