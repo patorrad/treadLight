@@ -1,5 +1,5 @@
 # TreadLight
-("heroku link URL")
+("https://tread-light.herokuapp.com/")
 
 
 ## Description
@@ -8,7 +8,7 @@ TreadLight is a free application for eco-conscious individuals that are looking 
 
 ### When you visit ("https://tread-light.herokuapp.com/") you will arrive at TreadLights homepage:
 
-![Homepage](link-to-image)
+![Homepage](https://github.com/patorrad/treadLight/blob/development/public/img/TreadLightHomepage.png)
 
 ### New users will need to create an account and will be prompted to fill out the following:
 
@@ -22,7 +22,7 @@ TreadLight is a free application for eco-conscious individuals that are looking 
 
 ### Existing users can simply log in with their username and password: 
 
-![Login Page](link-to-image) ***or working video
+![Login Page](link-to-image) 
 
 ### Once a user is logged in, they can start to plan their next trip, user will choose:
 
@@ -32,14 +32,13 @@ TreadLight is a free application for eco-conscious individuals that are looking 
 
 As the users enter this information, the CO2 emissions will change for each vehicle type. Once the vehicle is selected the user will calculate how much TreadLight suggests to donate to offset their carbon emissions. 
 
-![Trip Page](link-to-image) ***or working video
+![Trip Page](https://github.com/patorrad/treadLight/blob/development/public/img/Tripage.png) 
 
 ### Users can also login at any time and see their personal performance based on their carbon footprint and carbon offset:
 
-![Profile Page](link-to-image) 
+![Profile Page](https://github.com/patorrad/treadLight/blob/development/public/img/profile.png) 
 
-## API's
-
+## API
 API's Used:
 -https://https://www.fueleconomy.gov/feg/ws/
 -https://https://developers.google.com/maps/documentation/embed/get-api-key
