@@ -56,7 +56,7 @@
                     <form action="#">
                         <p>
                             <label>
-                                <input id="plane" type="radio" name="checkbox"
+                                <input id="Airplane" type="radio" name="checkbox"
                                     value="{{co2var_plane}},{{tripDistance}},{{tripTime_plane}}" />
                                 <span style="color: rgb(12, 56, 12);"><i class="fas fa-plane"></i>: {{co2var_plane}} CO2
                                     tons
@@ -67,7 +67,7 @@
                         <br>
                         <p>
                             <label>
-                                <input id="train" type="radio" name="checkbox"
+                                <input id="Train" type="radio" name="checkbox"
                                     value="{{co2var_train}},{{tripDistance}},{{tripTime_train}}" />
                                 <span style="color: rgb(12, 56, 12);"><i class="fas fa-train"></i>: {{co2var_train}} CO2
                                     tons <i class="fas fa-road"></i>:
@@ -77,7 +77,7 @@
                         <br>
                         <p>
                             <label>
-                                <input id="bus" type="radio" name="checkbox"
+                                <input id="Bus" type="radio" name="checkbox"
                                     value="{{co2var_bus}},{{tripDistance}},{{tripTime_bus}}" />
                                 <span style="color: rgb(12, 56, 12);"><i class="fas fa-bus-alt"></i>: {{co2var_bus}} CO2
                                     tons <i class="fas fa-road"></i>:
@@ -87,7 +87,7 @@
                         <br>
                         <p>
                             <label>
-                                <input id="car" type="radio" name="checkbox"
+                                <input id="Car" type="radio" name="checkbox"
                                     value="{{co2var_car}},{{tripDistance}},{{tripTime_car}}" />
                                 <span style="color: rgb(12, 56, 12);"><i class="fas fa-car"></i>: {{co2var_car}} CO2
                                     tons
@@ -120,25 +120,27 @@
                         <p>
                             <label>
                                 <span style="color: rgb(12, 56, 12);">
-                                    TOTAL: <br>
-                                    Transportation: <div id="vehicle">{{type}}</div>
-                                    Tons of CO2:
-                                    <div id="totalCO2">{{my_co2var}}</div>
+                                    <h5><div id="vehicle">{{type}}</div></h5>
+
+                                    <div class="center"></div><h5><div id="totalCO2">{{my_co2var}} CO2 tons</h5></div>
+                                    
                                      </span>
-                        
+                        <br>
                                     <span style="color: rgb(12, 56, 12);">
                                         <i class="fas fa-road"></i>:
                                         {{selectedTripDistance}} mi
                                     </span>
                                     <br>
                                     <span style="color: rgb(12, 56, 12);">
-                                        <i class="far fa-clock"></i>: {{my_tripTime}}hrs
+                                        <h6><i class="far fa-clock"></i>: {{my_tripTime}}hrs</h6>
                                     </span>
                                    
                             </label>
                         </p>
                         <br>
-                        <p>Your total cost to offset this trip's CO2 is: $<strong id="suggestedDonation">{{my_money}}</strong></p>
+                        <p>Your total cost to offset this trip's CO2 is: 
+                            <br>
+                            <div class="center"><h5>$<strong id="suggestedDonation">{{my_money}}</strong></h5></div></p>
                         <br>
                         <br>
 
