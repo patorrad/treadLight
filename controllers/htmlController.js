@@ -95,13 +95,14 @@ router.get("/trip/", function (req, res) {
 });
 
 
-router.get("/outputTripData/:co2/:distance/:time", function (req, res) {
+router.get("/outputTripData/:co2/:distance/:time/:car", function (req, res) {
     
     const myData = {
         tripDistance: req.params.distance,
         my_tripTime: req.params.time,
         my_co2var: req.params.co2,
         my_money: (req.params.co2 * 10).toFixed(2),
+        type: req.params.car
     }
         res.render("trip", myData);
     });
@@ -172,8 +173,8 @@ router.get("/profile", function (req, res) {
                     profileInfo.used_carbon.total += result[trip].used_carbon;
                     profileInfo.saved_carbon.total += result[trip].saved_carbon;
                 }
-                if (profileInfo.saved_carbon.total > 0.4 * profileInfo.saved_carbon.total) profileInfo.positive_stars = [0, 1, 2];                
-                if (profileInfo.saved_carbon.total < 0.4 * profileInfo.saved_carbon.total && profileInfo.saved_carbon.total > 0.2 * profileInfo.saved_carbon.total) 
+                if (profileInfo.saved_carbon.total > 0.4 * profileInfo.used_carbon.total) profileInfo.positive_stars = [0, 1, 2];                
+                if (profileInfo.saved_carbon.total < 0.4 * profileInfo.used_carbon.total && profileInfo.saved_carbon.total > 0.2 * profileInfo.used_carbon.total) 
                 {
                     profileInfo.positive_stars = [0,1]; 
                     profileInfo.negative_stars = [0]
@@ -215,6 +216,22 @@ router.get("/profile", function (req, res) {
         }
     });
 });
+
+// posting step 3 data
+router.post("/createTrip", function(req, res){
+    db.Trip.create({
+        used_carbon: req.body.used_carbon,
+        saved_carbon: req.body.saved_carbon,
+        travel_mode: req.body.travel_mode,
+        UserId: req.session.user.id
+    }).then(function(data){
+        db.Donation.create({
+            money: req.body.money,
+            UserId: req.session.user.id
+        })
+        res.json(data);
+    })
+})
 
 // router.post("/profile", function (req, res){
 //     db.User.findOne

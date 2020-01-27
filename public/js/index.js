@@ -10,11 +10,13 @@ $(document).ready(function(){
         window.location.href = `/retrieveTripData/${depart}/${arrive}`;
     });
     
-    $("#carbon-info").submit(event=>{
+    $("#carbon-info").click(event=>{
         event.preventDefault();
         console.log("form submit!");
         let vehicle = document.querySelector('input[name="checkbox"]:checked');
+        console.log("Vehicle info: ", vehicle);
         let myData = vehicle.value.split(",");
+        myData['type'] = vehicle.id;
         // $('input[name="checkbox"]').change(function(e) {
         //     vehicle = $(this).id();
         // })
@@ -22,7 +24,7 @@ $(document).ready(function(){
         // const vehicle = $('#checkbox').id();
         // const arrive = $('#arrivecity').val();
         //window.location.replace(`/retrieveTripData/${depart}/${arrive}`);
-        window.location.href = `/outputTripData/${myData[0]}/${myData[1]}/${myData[2]}`;
+        window.location.href = `/outputTripData/${myData[0]}/${myData[1]}/${myData[2]}/${myData.type}`;
     });
     
     $("#loginForm").submit(event=>{
@@ -86,8 +88,30 @@ $(document).ready(function(){
         // $.post?
     });
     
-    $("#radioForm").on("change",function(event){
+    $("#radioForm").change(function(event){
         console.log(event)
+    });
+
+    $("#step2Submit").click(function(){
+        event.preventDefault();
+        const chosenDonation = $("#chosenDonation").val();
+        const conversionFactor = 10
+        const offsetAmount = chosenDonation/conversionFactor;
+        const totalCO2 = document.getElementById("totalCO2").innerHTML;
+        const vehicle = document.getElementById("vehicle").innerHTML;
+       $.ajax({
+           url: "/createTrip",
+           method: "POST",
+           data: {
+            used_carbon: totalCO2,
+            saved_carbon: offsetAmount,
+            travel_mode: vehicle,
+            money: chosenDonation
+           }
+       }).then(function(response){
+        console.log("done")
+       })
+
     });
 
 });
