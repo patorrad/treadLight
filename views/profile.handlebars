@@ -1,4 +1,4 @@
-  {{!-- NavBar --}}
+{{!-- NavBar --}}
   <nav class="white" role="navigation">
     <div class="nav-wrapper container">
       <a href="/" id="logo-container" class="brand-logo" style="color: green;"><i
@@ -52,9 +52,31 @@
                         <p class="center-align">                            
                             <ul class="collapsible">
                                 <li>
+
+                                <div class="collapsible-header"><i class="material-icons">whatshot</i>One time donation!
+                                
+                                  <div class="form-field center">
+                    </div>
+                    <br>
+                    <br>
+                    <form id="donate-amount">
+                    <div class="form-field">
+                        <label for="donating">I'd like to donate this amount:</label>
+                        <input type="text" id="departcity">
+                    </div>
+                    <button class="btn-large waves-effect waves-dark green" id="tripSubmit"
+                        style="width: 100%;">Save this to my profile</button>
+                        <a href="https://standfortrees.org"
+                            class=" center btn-large waves-effect waves-light green lighten-1">Donate</a>
+
+                                <div>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div><div style="color: green">You have donated {{donated}}&nbspDollars</div>
+                                </div>
+                                <div class="collapsible-body"><span></span></div>
+
                                 <div class="collapsible-header"><i class="material-icons">whatshot</i>One time donation!<div>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div><div style="color: green">You have donated {{donated}}&nbspDollars</div>
                                 </div>
                                 <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+
                                 </li>
                                 <li>
                                 <div class="collapsible-header"><i class="material-icons">directions_car</i>{{#if car}}Update car</a>{{else}}Add car</a>{{/if}}<div>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div><div id="current-car" style="color: green">{{car}}</div></div>
