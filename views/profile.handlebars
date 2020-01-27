@@ -4,7 +4,7 @@
       <a href="/" id="logo-container" class="brand-logo" style="color: green;"><i
           class="material-icons">loop</i>TreadLight</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="/trip" style="color: rgb(6, 43, 6)">Trip</a></li>
+        <li><a href="/trip" class="btn-large waves-effect waves-light green lighten-1">Trip</a></li>
         <li><a href="/" class="btn-large waves-effect waves-light green lighten-1">Log out</a></li>
       </ul>
 
@@ -52,6 +52,7 @@
                         <p class="center-align">                            
                             <ul class="collapsible">
                                 <li>
+
                                 <div class="collapsible-header"><i class="material-icons">whatshot</i>One time donation!
                                 
                                   <div class="form-field center">
@@ -71,6 +72,11 @@
                                 <div>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div><div style="color: green">You have donated {{donated}}&nbspDollars</div>
                                 </div>
                                 <div class="collapsible-body"><span></span></div>
+
+                                <div class="collapsible-header"><i class="material-icons">whatshot</i>One time donation!<div>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div><div style="color: green">You have donated {{donated}}&nbspDollars</div>
+                                </div>
+                                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+
                                 </li>
                                 <li>
                                 <div class="collapsible-header"><i class="material-icons">directions_car</i>{{#if car}}Update car</a>{{else}}Add car</a>{{/if}}<div>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div><div id="current-car" style="color: green">{{car}}</div></div>
@@ -150,6 +156,7 @@
         }
     };
 	Plotly.newPlot( TESTER, data, layout, {responsive: true});
+
     $(document).ready(function(){
         
         //Getting car info
@@ -176,6 +183,7 @@
         };
         var input = document.getElementById('home-city');
         var autocomplete = new google.maps.places.Autocomplete(input, options);
+
         //Add/update city
         $("#city-save-btn").on("click", function() {
             event.preventDefault();
@@ -212,6 +220,7 @@
                 });
             };    
         });
+
         ////  Car search modal  //// ////*****Need to add switch of car upon submit
         //Look up year
         let queryURLYear = "https://www.fueleconomy.gov/ws/rest/vehicle/menu/year";
