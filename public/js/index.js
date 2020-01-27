@@ -13,6 +13,7 @@ $("#carbon-info").submit(event=>{
     event.preventDefault();
     console.log("form submit!");
     let vehicle = document.querySelector('input[name="checkbox"]:checked');
+    console.log(vehicle)
     let myData = vehicle.value.split(",");
     // $('input[name="checkbox"]').change(function(e) {
     //     vehicle = $(this).id();
