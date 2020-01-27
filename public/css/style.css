@@ -1,3 +1,19 @@
 /* body{   
     background-image: url("/img/tree.jpg") 
 } */
+
+h1, h2, h3, h4 {
+    font-family: 'Shadows Into Light', cursive;
+}
+
+h5 {
+    font-family: 'Nunito', sans-serif;
+}
+
+#logo-container{
+    width: 300pt;
+    margin-bottom: 10pt;
+}
+#head1 {
+    text-align: center;
+}

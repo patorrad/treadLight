@@ -61,7 +61,10 @@ router.get("/register", function (req, res) {
 router.post("/register", function (req, res) {
     db.User.create(req.body).then(function (data) {
         res.json(data);
-    }).catch(err=>console.log("register err", err))
+    }).catch(err=>{
+        console.log("register err", err);
+        res.send(400)
+    })
 });
 
 // trip route loads the page
@@ -91,7 +94,20 @@ router.get("/trip/", function (req, res) {
     res.render("trip",{istrip:true });
 });
 
+
+router.get("/outputTripData/:co2/:distance/:time", function (req, res) {
+    
+    const myData = {
+        tripDistance: req.params.distance,
+        my_tripTime: req.params.time,
+        my_co2var: req.params.co2,
+        my_money: (req.params.co2 * 10).toFixed(2),
+    }
+        res.render("trip", myData);
+    });
+
 router.get("/retrieveTripData/:start/:end", function (req, res) {
+    console.log("hello world");
     let googleApiKey = process.env.GOOGLE_API_KEY
     let cityOne = req.params.start
     let cityTwo = req.params.end
@@ -99,35 +115,25 @@ router.get("/retrieveTripData/:start/:end", function (req, res) {
 
     let googleURL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + cityOne + "&destinations=" + cityTwo + "&mode=" + vehicleType + "&language=en-FR&key=" + googleApiKey;
     axios.get(googleURL).then(response => {
-        // res.json(response.data);
+        console.log(response.data);
         const ourData = {
-            tripTime: response.data.rows[0].elements[0].duration.text,
-            tripDistance: response.data.rows[0].elements[0].distance.text,
+            tripDistance: Math.round(response.data.rows[0].elements[0].distance.value * 0.000621371),
+            tripTime_car: (response.data.rows[0].elements[0].distance.value * 0.000621371 / 40).toFixed(2),
+            co2var_car: (response.data.rows[0].elements[0].distance.value * 0.000621371 * 1.10231e-6 * 368).toFixed(3),
+            tripTime_plane: (response.data.rows[0].elements[0].distance.value * 0.000621371 / 550).toFixed(2),
+            co2var_plane: (response.data.rows[0].elements[0].distance.value * 0.000621371 * 1.10231e-6 * 188).toFixed(3),
+            tripTime_train: (response.data.rows[0].elements[0].distance.value * 0.000621371 / 550).toFixed(2),
+            co2var_train: (response.data.rows[0].elements[0].distance.value * 0.000621371 * 1.10231e-6 * 147).toFixed(3),
+            tripTime_bus: (response.data.rows[0].elements[0].distance.value * 0.000621371 / 10).toFixed(2),
+            co2var_bus: (response.data.rows[0].elements[0].distance.value * 0.000621371 * 1.10231e-6 * 43).toFixed(3),
+            cityOne: cityOne,
+            cityTwo: cityTwo,
         }
         console.log(ourData)
+        //res.json(ourData);
         res.render("trip", ourData);
-        // res.render("trip", ourData);
     })
 })
-
-// router.get("/retrieveTripData/:start/:end", function (req, res) {
-//     let googleApiKey = process.env.GOOGLE_API_KEY
-//     let cityOne = req.params.start
-//     let cityTwo = req.params.end
-//     let vehicleType = "driving"
-
-//     let googleURL = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + cityOne + "&destinations=" + cityTwo + "&mode=" + vehicleType + "&language=en-FR&key=" + googleApiKey;
-//     axios.get(googleURL).then(response => {
-//         // res.json(response.data);
-//         const ourData = {
-//             tripTime: response.data.rows[0].elements[0].duration.text,
-//             tripDistance: response.data.rows[0].elements[0].distance.text,
-//         }
-//         console.log(ourData)
-//         res.json(response.data);
-//         // res.render("trip", ourData);
-//     })
-// })
 
 // profile route loads profile.html with data from our tables
 router.get("/profile", function (req, res) {

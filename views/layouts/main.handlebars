@@ -5,9 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Welcome</title>
+  <title>Tread Lightly</title>
   <link rel="stylesheet" href="/css/style.css">
-
+<link href="https://fonts.googleapis.com/css?family=Nunito|Shadows+Into+Light&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -16,32 +16,36 @@
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
+<<<<<<< HEAD
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+=======
+
+>>>>>>> development
 </head>
 
 <body>
 
   {{!-- Nav --}}
 
-  <nav class="white" role="navigation">
+  {{!-- <nav class="white" role="navigation">
     <div class="nav-wrapper container">
       <a href="/" id="logo-container" class="brand-logo" style="color: green;"><i
-          class="material-icons">loop</i>TreadLight</a>
+          class="material-icons">loop</i><h4>Tread Lightly</h4></a>
       <ul class="right hide-on-med-and-down">
-        {{!-- <li><a href="/treadLight/views/profile.handlebars" style="color: rgb(6, 43, 6)">Profile</a></li>
-        <li><a href="/treadLight/views/register.handlebars" --}}
+        <li><a href="/treadLight/views/profile.handlebars" style="color: rgb(6, 43, 6)">Profile</a></li>
+        <li><a href="/treadLight/views/register.handlebars"
             class="btn-large waves-effect waves-light green lighten-1">Sign up</a></li>
-      </ul>
+      </ul> 
 
       <ul id="nav-mobile" class="sidenav">
-        {{!-- <li><a href="/treadLight/views/profile.handlebars">Profile</a></li>
+        <li><a href="/treadLight/views/profile.handlebars">Profile</a></li>
         <li><a href="/treadLight/views/register.handlebars"
-            class="btn-large waves-effect waves-light green lighten-1">Sign up</a></li> --}}
+            class="btn-large waves-effect waves-light green lighten-1">Sign up</a></li> 
       </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
  
     </div>
-  </nav>
+  </nav>  --}}
 
 
   {{{body}}}
@@ -51,14 +55,15 @@
   <footer class="page-footer green">
         <div class="container">
             <div class="row">
-                  <h5 class="white-text center">TreadLight</h5>
-                  <p class="grey-text text-lighten-4 center">Our goal is to help save the planet one trip at a time.
-          Everyone can contribute to reducing their carbon footprint.</p>
+                  <h4 class="white-text center">
+          <i class="material-icons">loop</i>Tread Lightly</h4>
+                  <h5 class="grey-text text-lighten-4 center">Our goal is to help save the planet one trip at a time.
+          Everyone can contribute to reducing their carbon footprint.</h5>
               </div>
           </div>
-        <div class="footer-copyright center">
+        <div class="footer-copyright center light-green darken-4">
             <div class="container">
-              <p class="brown-text text-lighten-3">Copyright®2020</p>
+              <p class="text-white">Copyright © 2020</p>
               </div>
           </div>
       </footer>
@@ -71,6 +76,115 @@
       $('.parallax').parallax();
   
     });
+    let queryURLYear = "https://www.fueleconomy.gov/ws/rest/vehicle/menu/year";
+  $.ajax({
+    url: queryURLYear,
+    method: "GET"
+  }).then(function(response) {
+    let years = response.getElementsByTagName("menuItem");
+    for (let index = 0; index < years.length; index++)
+    {
+      let year = years[index].childNodes[1].innerHTML;
+      let newYear = $("<option>").attr("value",year).text(year);
+      $("#year").append(newYear);
+    } 
+  });
+  $("#year").on("change", function() {
+    $("#make")
+      .find('option')
+      .remove()
+      .end()
+      .append('<option value="whatever">Choose make</option>')
+      .val('whatever');
+    $("#model")
+      .find('option')
+      .remove()
+      .end()
+      .append('<option value="whatever">Choose model</option>')
+      .val('whatever');
+    $("#trim")
+      .find('option')
+      .remove()
+      .end()
+      .append('<option value="whatever">Choose trim</option>')
+      .val('whatever')
+    let queryURLModel = "https://www.fueleconomy.gov/ws/rest/vehicle/menu/make?year=" + this.value;
+    $.ajax({
+      url: queryURLModel,
+      method: "GET"
+    }).then(function(response) {
+      let makes = response.getElementsByTagName("menuItem");
+      for (let index = 0; index < makes.length; index++)
+      {
+        let make = makes[index].childNodes[1].innerHTML;
+        console.log(make);
+        let newMake = $("<option>").attr("value", make).text(make);
+        $("#make").append(newMake);
+      } 
+    });        
+  })
+  $("#make").on("change", function() {
+    $("#model")
+      .find('option')
+      .remove()
+      .end()
+      .append('<option value="whatever">Choose model</option>')
+      .val('whatever');
+    $("#trim")
+      .find('option')
+      .remove()
+      .end()
+      .append('<option value="whatever">Choose trim</option>')
+      .val('whatever')
+    let queryURLModel = "https://www.fueleconomy.gov/ws/rest/vehicle/menu/model?year=" + $("#year").val() + "&make=" + this.value;
+    $.ajax({
+      url: queryURLModel,
+      method: "GET"
+    }).then(function(response) {
+      let models = response.getElementsByTagName("menuItem");
+      for (let index = 0; index < models.length; index++)
+      {
+        let model = models[index].childNodes[1].innerHTML;
+        console.log(model);
+        let newModel = $("<option>").attr("value", model).text(model);
+        $("#model").append(newModel);
+      } 
+    });        
+  })
+  $("#model").on("change", function() {
+    $("#trim")
+      .find('option')
+      .remove()
+      .end()
+      .append('<option value="whatever">Choose trim</option>')
+      .val('whatever')
+    let queryURLTrim = "https://www.fueleconomy.gov/ws/rest/vehicle/menu/options?year=" + $("#year").val() + "&make=" + $("#make").val() + "&model=" + $("#model").val();
+    $.ajax({
+      url: queryURLTrim,
+      method: "GET"
+    }).then(function(response) {
+      let trims = response.getElementsByTagName("menuItem");
+      for (let index = 0; index < trims.length; index++)
+      {
+        let trim = trims[index].childNodes[0].innerHTML;
+        let id = trims[index].childNodes[1].innerHTML;
+        let newTrim = $("<option>").attr("value", id).text(trim);
+        $("#trim").append(newTrim);
+      } 
+    });        
+  })
+  $("#find-car").on("click", function(event) {
+    event.preventDefault();
+    let queryURL= "https://www.fueleconomy.gov/ws/rest/vehicle/" + $("#trim").children()[1].value;
+    console.log($("#trim").children()[1].value);
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      let test = response.getElementsByTagName("vehicle");
+         console.log(test[0].childNodes[15].innerHTML);
+    });
+  });
 
   </script>
   <script src="/js/index.js"></script>
