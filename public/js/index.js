@@ -86,8 +86,12 @@ $(document).ready(function(){
         // $.post?
     });
     
-    $("#radioForm").on("change",function(event){
+    $("#radioForm").change(function(event){
         console.log(event)
+    });
+
+    $("#tripSubmit").click(function(){
+
     });
 
 });
