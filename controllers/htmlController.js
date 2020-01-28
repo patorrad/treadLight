@@ -60,8 +60,6 @@ router.get("/register", function (req, res) {
 // sending entered sign up info to db
 router.post("/register", function (req, res) {
     db.User.create(req.body).then(function (dbUser) {
-        console.log(dbUser);
-        
         req.session.user = { first_name: dbUser.first_name, id: dbUser.id };
         res.json(dbUser);
     }).catch(err => {
