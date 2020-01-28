@@ -56,13 +56,18 @@ $(document).ready(function(){
         const last_name = $("#lastname").val().trim();
         const email = $("#email").val().trim();
         const password = $("#password").val().trim();
+        const city = $("#city").val().trim();
+        var carId = $("#trim").children("option:selected").val();
         const userInfo={
             first_name: first_name,
             last_name: last_name,
             email: email,
-            password: password
+            password: password,
+            default_city: city,
+            default_car: carId
+
         }
-        $.post('/register',userInfo).then(data=>{
+        $.post('/register', userInfo).then(data=>{
            if(data){
                window.location.href='/trip'
            }

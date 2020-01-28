@@ -14,9 +14,9 @@
         </ul>
         <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 </nav>
-</div>
-{{!--    <div class="parallax"><img src="img/tree.jpg" alt="Unsplashed background img 1"></div> --}}
-</div>
+    </div>
+    {{!--    <div class="parallax"><img src="img/tree.jpg" alt="Unsplashed background img 1"></div> --}}
+</div> 
 
  <div class="row">
     <div class="col s12 m4">
@@ -30,13 +30,11 @@
                 <form id="find-trip-info">
                     <div class="form-field">
                         <label for="departcity">Departing City</label>
-                        <input type="text" id="departcity">
-                        <p id='startcityp'>{{cityOne}}</p>
+                        <input type="text" id="departcity" ><p id='startcityp'>{{cityOne}}</p>
                     </div><br>
                      <div class="form-field">
                         <label for="arrivecity">Arrival City</label>
-                        <input type="text" id="arrivecity" data-city={{cityTwo}}>
-                        <p id='endcityp'>{{cityTwo}}</p>
+                        <input type="text" id="arrivecity" data-city={{cityTwo}}><p id='endcityp'>{{cityTwo}}</p>
                     </div><br>
                     <button class="btn-large waves-effect waves-dark green" id="tripSubmit"
                         style="width: 100%;">Submit</button>
@@ -61,9 +59,9 @@
                                 <input id="Airplane" type="radio" name="checkbox"
                                     value="{{co2var_plane}},{{tripDistance}},{{tripTime_plane}}" />
                                 <span style="color: rgb(12, 56, 12);"><i class="fas fa-plane"></i>: {{co2var_plane}} CO2
-                                    Tons,
+                                    tons
                                     <i class="fas fa-road"></i>:
-                                    {{tripDistance}} mi, <i class="far fa-clock"></i>: {{tripTime_plane}} hrs </span>
+                                    {{tripDistance}} mi <i class="far fa-clock"></i>: {{tripTime_plane}}hrs </span>
                             </label>
                         </p>
                         <br>
@@ -72,9 +70,8 @@
                                 <input id="Train" type="radio" name="checkbox"
                                     value="{{co2var_train}},{{tripDistance}},{{tripTime_train}}" />
                                 <span style="color: rgb(12, 56, 12);"><i class="fas fa-train"></i>: {{co2var_train}} CO2
-                                    Tons,
-                                    <i class="fas fa-road"></i>:
-                                    {{tripDistance}} mi, <i class="far fa-clock"></i>: {{tripTime_train}} hrs</span>
+                                    tons <i class="fas fa-road"></i>:
+                                    {{tripDistance}} mi <i class="far fa-clock"></i>: {{tripTime_train}}hrs</span>
                             </label>
                         </p>
                         <br>
@@ -83,9 +80,8 @@
                                 <input id="Bus" type="radio" name="checkbox"
                                     value="{{co2var_bus}},{{tripDistance}},{{tripTime_bus}}" />
                                 <span style="color: rgb(12, 56, 12);"><i class="fas fa-bus-alt"></i>: {{co2var_bus}} CO2
-                                    Tons,
-                                    <i class="fas fa-road"></i>:
-                                    {{tripDistance}} mi, <i class="far fa-clock"></i>: {{tripTime_bus}} hrs</span>
+                                    tons <i class="fas fa-road"></i>:
+                                    {{tripDistance}} mi <i class="far fa-clock"></i>: {{tripTime_bus}}hrs</span>
                             </label>
                         </p>
                         <br>
@@ -94,16 +90,15 @@
                                 <input id="Car" type="radio" name="checkbox"
                                     value="{{co2var_car}},{{tripDistance}},{{tripTime_car}}" />
                                 <span style="color: rgb(12, 56, 12);"><i class="fas fa-car"></i>: {{co2var_car}} CO2
-                                    Tons,
+                                    tons
                                     <i class="fas fa-road"></i>:
-                                    {{tripDistance}} mi, <i class="far fa-clock"></i>: {{tripTime_car}} hrs</span>
+                                    {{tripDistance}} mi <i class="far fa-clock"></i>: {{tripTime_car}}hrs</span>
                             </label>
                         </p>
                         <br>
                         <br>
                         <div class="form-field">
-                            <button id="carbon-info" class="btn-large waves-effect waves-dark green"
-                                style="width: 100%;">Check your
+                            <button id="carbon-info" class="btn-large waves-effect waves-dark green" style="width: 100%;">Check your
                                 carbon footprint</button>
                         </div>
                     </form>              
@@ -125,61 +120,57 @@
                         <p>
                             <label>
                                 <span style="color: rgb(12, 56, 12);">
-                                    <h5>
-                                        <div id="vehicle">{{type}}</div>
-                                    </h5>
+                                    <h5><div id="vehicle">{{type}}</div></h5>
 
-                                    <div class="center"></div>
-                                    <h5>
-                                        <div id="totalCO2">{{my_co2var}} Tons of CO2</div>
-                                    </h5>
-                    </div>
-
-                    </span>
-
-                    <span style="color: rgb(12, 56, 12);">
-                        <h6><i class="fas fa-road"></i>:
-                        {{selectedTripDistance}} mi</h6>
-                    </span>
-                    <span style="color: rgb(12, 56, 12);">
-                        <h6><i class="far fa-clock"></i>: {{my_tripTime}} hrs</h6>
-                    </span>
-
-                    </label>
-                    </p>
-                    <br>
-                    <p>Your total cost to offset this trip's CO2 is:
+                                    <div class="center"></div><h5><div id="totalCO2">{{my_co2var}} CO2 tons</h5></div>
+                                    
+                                     </span>
                         <br>
-                        <div class="center">
-                            <h5>$<strong id="suggestedDonation">{{my_money}}</strong></h5>
+                                    <span style="color: rgb(12, 56, 12);">
+                                        <i class="fas fa-road"></i>:
+                                        {{selectedTripDistance}} mi
+                                    </span>
+                                    <br>
+                                    <span style="color: rgb(12, 56, 12);">
+                                        <h6><i class="far fa-clock"></i>: {{my_tripTime}}hrs</h6>
+                                    </span>
+                                   
+                            </label>
+                        </p>
+                        <br>
+                        <p>Your total cost to offset this trip's CO2 is: 
+                            <br>
+                            <div class="center"><h5>$<strong id="suggestedDonation">{{my_money}}</strong></h5></div></p>
+                        <br>
+                        <br>
+
+                        <div class="form-field center">
+                            <label for="donating">I chose to donate this amount:</label>
+                            <input type="number" id="chosenDonation">
+                            <button class="center btn-large waves-effect waves-light green lighten-1" id="step2Submit"
+                                style="width: 65%;">Save this to my profile</button>
                         </div>
-                    </p>
+
+                          
+                    </div>
                     <br>
                     <br>
+
 
                     <div class="form-field center">
-                        <label for="donating">I chose to donate this amount:</label>
-                        <input type="number" id="chosenDonation">
-                        <button class="center btn-large waves-effect waves-light green lighten-1" id="step2Submit"
-                            style="width: 65%;">Save this to my profile</button>
-                    </div>
-                    <br>
-                    <br>
-                       <div class="form-field center">
                         <button class="donate-btn btn-large center waves-effect waves-dark green"
                             style="width: 100%;">Donate</button>
                     </div>
-            </div>
 
-            </form>   
+                </form>   
+                    </div>
+
+                    
+                </form>              
+            </div>        
         </div>
-
-
-        </form>              
-    </div>        
-</div>
-</div>
-    
+    </div>
+        
 </div>
 
     

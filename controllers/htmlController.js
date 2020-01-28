@@ -64,7 +64,7 @@ router.post("/register", function (req, res) {
         res.json(dbUser);
     }).catch(err => {
         console.log("register err", err);
-        res.send(400)
+        res.render(400);
     })
 });
 
@@ -245,6 +245,7 @@ router.get("/profile", function (req, res) {
 
 // posting step 3 data
 router.post("/createTrip", function (req, res) {
+    console.log("Money " + req.body.money)
     db.Trip.create({
         used_carbon: req.body.used_carbon,
         saved_carbon: req.body.saved_carbon,
