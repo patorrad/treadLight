@@ -59,12 +59,14 @@ router.get("/register", function (req, res) {
 
 // sending entered sign up info to db
 router.post("/register", function (req, res) {
-    db.User.create(req.body).then(function (data) {
+    db.User.create(req.body).then(function (dbUser) {
+        console.log(dbUser);
+        
         req.session.user = { first_name: dbUser.first_name, id: dbUser.id };
-        res.json(data);
+        res.json(dbUser);
     }).catch(err => {
         console.log("register err", err);
-        res.send(400)
+        res.render(400);
     })
 });
 
@@ -245,6 +247,7 @@ router.get("/profile", function (req, res) {
 
 // posting step 3 data
 router.post("/createTrip", function (req, res) {
+    console.log("Money " + req.body.money)
     db.Trip.create({
         used_carbon: req.body.used_carbon,
         saved_carbon: req.body.saved_carbon,
